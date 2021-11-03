@@ -27,7 +27,6 @@ namespace KonceptCSDAPI.Controllers
         private ServiceResponseModel _objResponse = new ServiceResponseModel();
         private IConfiguration _configuration;
         private CommonHelper _objHelper = new CommonHelper();
-        private MSSQLGateway _MSSQLGateway;
         private IHostingEnvironment _env;
         public AuthenticationFactory _AuthenticationFactory;
         private IAuthenticationManager _IAuthenticationManager;
