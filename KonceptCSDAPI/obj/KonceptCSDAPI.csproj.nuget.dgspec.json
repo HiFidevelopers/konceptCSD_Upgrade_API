@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Mobile Backup 11-July-2019\\SD Card\\AMAN\\Koncept\\KonceptCSDAPI\\KonceptCSDAPI\\KonceptCSDAPI.csproj": {}
+    "C:\\Users\\DGR\\Desktop\\konceptCSD_Upgrade_API\\KonceptCSDAPI\\KonceptCSDAPI.csproj": {}
   },
   "projects": {
-    "D:\\Mobile Backup 11-July-2019\\SD Card\\AMAN\\Koncept\\KonceptCSDAPI\\KonceptCSDAPI\\KonceptCSDAPI.csproj": {
+    "C:\\Users\\DGR\\Desktop\\konceptCSD_Upgrade_API\\KonceptCSDAPI\\KonceptCSDAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Mobile Backup 11-July-2019\\SD Card\\AMAN\\Koncept\\KonceptCSDAPI\\KonceptCSDAPI\\KonceptCSDAPI.csproj",
+        "projectUniqueName": "C:\\Users\\DGR\\Desktop\\konceptCSD_Upgrade_API\\KonceptCSDAPI\\KonceptCSDAPI.csproj",
         "projectName": "KonceptCSDAPI",
-        "projectPath": "D:\\Mobile Backup 11-July-2019\\SD Card\\AMAN\\Koncept\\KonceptCSDAPI\\KonceptCSDAPI\\KonceptCSDAPI.csproj",
+        "projectPath": "C:\\Users\\DGR\\Desktop\\konceptCSD_Upgrade_API\\KonceptCSDAPI\\KonceptCSDAPI.csproj",
         "packagesPath": "C:\\Users\\DGR\\.nuget\\packages\\",
-        "outputPath": "D:\\Mobile Backup 11-July-2019\\SD Card\\AMAN\\Koncept\\KonceptCSDAPI\\KonceptCSDAPI\\obj\\",
+        "outputPath": "C:\\Users\\DGR\\Desktop\\konceptCSD_Upgrade_API\\KonceptCSDAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
