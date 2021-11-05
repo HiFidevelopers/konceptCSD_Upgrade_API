@@ -39,7 +39,7 @@ namespace KonceptCSDAPI.Managers
         public DataTable Signin(SiginModel modell)
         {
             param.Add(new SqlParameter("Login", modell.username));
-            param.Add(new SqlParameter("Password", modell.password));
+            param.Add(new SqlParameter("Password", _commonHelper.ConvertToSHA512(modell.password)));
 
             DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_FETCH_AUTH_USER_LOGIN", param);
             return _dtResp;
