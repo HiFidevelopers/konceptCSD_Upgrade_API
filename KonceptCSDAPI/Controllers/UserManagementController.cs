@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace KonceptCSDAPI.Controllers
 {
-    [Route("api/user")]
+    [Route("api/[controller]")]
     [ApiController]
     public class UserManagementController : ControllerBase
     {
@@ -21,7 +22,8 @@ namespace KonceptCSDAPI.Controllers
         private MSSQLGateway _MSSQLGateway;
         private IHostingEnvironment _env;
         #endregion Controller Properties
-
+        
+        private readonly ILogger<UserManagementController> _logger;
         public UserManagementController(IConfiguration configuration, IHostingEnvironment env)
         {
             // Get connectin string of current solution

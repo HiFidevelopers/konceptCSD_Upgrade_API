@@ -27,11 +27,13 @@ namespace KonceptCSDAPI.Controllers
         private ServiceResponseModel _objResponse = new ServiceResponseModel();
         private IConfiguration _configuration;
         private CommonHelper _objHelper = new CommonHelper();
+        private MSSQLGateway _MSSQLGateway;
         private IHostingEnvironment _env;
         public AuthenticationFactory _AuthenticationFactory;
         private IAuthenticationManager _IAuthenticationManager;
         private DataTable _dt;
         private DataRow _dr;
+        CommonFunctions _CommonFunctions;
         #endregion Controller Properties
 
         public AuthenticationController(IConfiguration configuration, IHostingEnvironment env)
@@ -41,6 +43,7 @@ namespace KonceptCSDAPI.Controllers
             this._env = env;
             _AuthenticationFactory = new AuthenticationFactory();
             _IAuthenticationManager = _AuthenticationFactory.AuthenticationManager(this._configuration, this._env);
+            _CommonFunctions = new CommonFunctions(configuration, env);
         }
 
         [HttpPost]
@@ -87,7 +90,7 @@ namespace KonceptCSDAPI.Controllers
 
                     #region GENERATE LOGIN TOKEN
 
-                    string token = this.GenerateToken(claims);
+                    string token = _CommonFunctions.GenerateToken(claims);
 
                     #endregion GENERATE LOGIN TOKEN
 
@@ -96,17 +99,23 @@ namespace KonceptCSDAPI.Controllers
                     _dr = _dt.NewRow();
 
                     _dt.Columns.Add("response");
+                    _dt.Columns.Add("Login_ID");
                     _dt.Columns.Add("User_ID");
-                    _dt.Columns.Add("FirstName");
-                    _dt.Columns.Add("Gender");
+                    _dt.Columns.Add("First_Name");
+                    _dt.Columns.Add("Last_Name");
                     _dt.Columns.Add("Email");
+                    _dt.Columns.Add("Gender");
+                    _dt.Columns.Add("Created_On");
 
                     DataRow row = _dt.NewRow();
                     row["response"] = "0";
+                    row["Login_ID"] = "";
                     row["User_ID"] = "";
-                    row["FirstName"] = "";
-                    row["Gender"] = "";
+                    row["First_Name"] = "";
+                    row["Last_Name"] = "";
                     row["Email"] = "";
+                    row["Gender"] = "";
+                    row["Created_On"] = "";
                     _dt.Rows.Add(row);
 
                     _dt.Rows[0]["response"] = Convert.ToString(_dtresp.Rows[0]["response"]);
@@ -122,22 +131,6 @@ namespace KonceptCSDAPI.Controllers
                 }
             }
             return _objResponse;
-        }
-
-        public string GenerateToken(List<Claim> claims)
-        {
-            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this._configuration["JWTSetting:Key"]));
-            SigningCredentials signInCred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
-
-            JwtSecurityToken token = new JwtSecurityToken(
-                issuer: this._configuration["JWTSetting:Issuer"],
-                audience: this._configuration["JWTSetting:Audience"],
-                expires: DateTime.Now.AddMinutes(Convert.ToDouble(this._configuration["JWTSetting:ExpiryInMins"])),
-                claims: claims,
-                signingCredentials: signInCred
-            );
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 
