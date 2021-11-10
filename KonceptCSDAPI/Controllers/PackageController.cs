@@ -11,13 +11,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Security.Claims;
 using System.Data;
-using KonceptCSDAPI.Models.User;
+using KonceptCSDAPI.Models.Package;
 
 namespace KonceptCSDAPI.Controllers
 {
-    [Route("api/user")]
+    [Route("api/package")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class PackageController : ControllerBase
     {
         #region Controller Properties
         private ServiceResponseModel _objResponse = new ServiceResponseModel();
@@ -27,7 +27,7 @@ namespace KonceptCSDAPI.Controllers
         private IHostingEnvironment _env;
         #endregion Controller Properties
 
-        public UserController(IConfiguration configuration, IHostingEnvironment env)
+        public PackageController(IConfiguration configuration, IHostingEnvironment env)
         {
             // Get connectin string of current solution
             this._configuration = configuration;
@@ -45,27 +45,29 @@ namespace KonceptCSDAPI.Controllers
         List<SqlParameter> _param = new List<SqlParameter>();
 
 
-        //================================= User =================================//
+        //================================= Package =================================//
 
-        #region Insert User Type
-        [HttpPost("insert-user-type")]
-        public ServiceResponseModel InsertUserType([FromBody] UserTypeInsertUpdateModel utm)
+        #region Insert Package
+        [HttpPost("insert-package")]
+        public ServiceResponseModel InsertPackage([FromBody] PackageInsertUpdateModel pm)
         {
-            try
-            {
-                // Check validation
-                if (!ModelState.IsValid)
-                {
-                    _objResponse.response = 0;
-                    _objResponse.sys_message = _objHelper.GetModelErrorMessages(ModelState);
-                    return _objResponse;
-                }
+			try
+			{
+				// Check validation
+				if (!ModelState.IsValid)
+				{
+					_objResponse.response = 0;
+					_objResponse.sys_message = _objHelper.GetModelErrorMessages(ModelState);
+					return _objResponse;
+				}
 
                 _param.Add(new SqlParameter("Mode", "INSERT"));
-                _param.Add(new SqlParameter("User_Type", utm.User_Type.Trim()));
-                _param.Add(new SqlParameter("Is_Active", utm.Is_Active));
+                _param.Add(new SqlParameter("Package", pm.Package.Trim()));
+                _param.Add(new SqlParameter("Price", pm.Price.Trim()));
+                _param.Add(new SqlParameter("Code", pm.Code.Trim()));
+                _param.Add(new SqlParameter("Is_Active", pm.Is_Active));
                 _param.Add(new SqlParameter("Logged_User_ID", Convert.ToInt32(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"))));
-                _objResponse = UserRequest("[APP_INSERT_UPDATE_USER_TYPE]", _param);
+                _objResponse = PackageRequest("[APP_INSERT_UPDATE_PACKAGE]", _param);
             }
             catch (Exception ex)
             {
@@ -76,9 +78,9 @@ namespace KonceptCSDAPI.Controllers
         }
         #endregion
 
-        #region Update User Type
-        [HttpPost("update-user-type")]
-        public ServiceResponseModel UpdateUserType([FromBody] UserTypeInsertUpdateModel utm)
+        #region Update Package
+        [HttpPost("update-package")]
+        public ServiceResponseModel UpdatePackage([FromBody] PackageInsertUpdateModel pm)
         {
             try
             {
@@ -91,40 +93,13 @@ namespace KonceptCSDAPI.Controllers
                 }
 
                 _param.Add(new SqlParameter("Mode", "UPDATE"));
-                _param.Add(new SqlParameter("User_Type", utm.User_Type.Trim()));
-                _param.Add(new SqlParameter("Is_Active", utm.Is_Active));
+                _param.Add(new SqlParameter("Package_ID", pm.Package_ID));
+                _param.Add(new SqlParameter("Package", pm.Package.Trim()));
+                _param.Add(new SqlParameter("Price", pm.Price.Trim()));
+                _param.Add(new SqlParameter("Code", pm.Code.Trim()));
+                _param.Add(new SqlParameter("Is_Active", pm.Is_Active));
                 _param.Add(new SqlParameter("Logged_User_ID", Convert.ToInt32(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"))));
-                _objResponse = UserRequest("[APP_INSERT_UPDATE_USER_TYPE]", _param);
-            }
-            catch (Exception ex)
-            {
-                _objResponse.response = 0;
-                _objResponse.sys_message = ex.Message;
-            }
-            return _objResponse;
-        }
-        #endregion
-
-
-        #region Fetch User
-        [HttpPost("fetch-user")]
-        public ServiceResponseModel FetchUser([FromBody] UserFilterModel um)
-        {
-            try
-            {
-                // Check validation
-                if (!ModelState.IsValid)
-                {
-                    _objResponse.response = 0;
-                    _objResponse.sys_message = _objHelper.GetModelErrorMessages(ModelState);
-                    return _objResponse;
-                }
-                _param.Add(new SqlParameter("User_ID", um.User_ID));
-                _param.Add(new SqlParameter("Search", um.Search.Trim()));
-                _param.Add(new SqlParameter("User_Type_ID", um.User_Type_ID));
-                _param.Add(new SqlParameter("Is_Active", um.Is_Active));
-                _param.Add(new SqlParameter("Logged_User_ID", Convert.ToInt32(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"))));
-                _objResponse = UserRequest("[FETCH_USER]", _param);
+                _objResponse = PackageRequest("[APP_INSERT_UPDATE_PACKAGE]", _param);
             }
             catch (Exception ex)
             {
@@ -137,8 +112,8 @@ namespace KonceptCSDAPI.Controllers
 
 
         // Non API Route Methods
-        #region User Request and Response
-        private ServiceResponseModel UserRequest(string procedureName, List<SqlParameter> sp)
+        #region Package Request and Response
+        private ServiceResponseModel PackageRequest(string procedureName, List<SqlParameter> sp)
         {
             // Execute procedure with parameters for post data
             DataTable dtresp = _MSSQLGateway.ExecuteProcedure(Convert.ToString(procedureName), sp);
@@ -159,7 +134,7 @@ namespace KonceptCSDAPI.Controllers
             return _objResponse;
         }
 
-        private ServiceResponseModel UserResponse(string procedureName, List<SqlParameter> sp)
+        private ServiceResponseModel PackageResponse(string procedureName, List<SqlParameter> sp)
         {
             // Execute procedure with parameters for get data
             DataTable dtresp = _MSSQLGateway.ExecuteProcedure(Convert.ToString(procedureName), sp);
@@ -179,6 +154,5 @@ namespace KonceptCSDAPI.Controllers
             return _objResponse;
         }
         #endregion
-
     }
 }
