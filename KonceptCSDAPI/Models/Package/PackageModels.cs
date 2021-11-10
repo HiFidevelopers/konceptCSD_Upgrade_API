@@ -34,6 +34,6 @@ namespace KonceptCSDAPI.Models.Package
 
 		[Required(ErrorMessage = "Package Code is required.")]
 		public string Code { get; set; }
-		public int? Is_Active { get; set; } = null;
+		public Boolean? Is_Active { get; set; } = true;
 	}
 }
