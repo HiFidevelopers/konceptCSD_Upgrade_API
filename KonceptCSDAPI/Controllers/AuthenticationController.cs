@@ -101,24 +101,21 @@ namespace KonceptCSDAPI.Controllers
                     _dt.Columns.Add("response");
                     _dt.Columns.Add("Login_ID");
                     _dt.Columns.Add("User_ID");
-                    _dt.Columns.Add("First_Name");
-                    _dt.Columns.Add("Last_Name");
-                    _dt.Columns.Add("Email");
+                    _dt.Columns.Add("FirstName");
                     _dt.Columns.Add("Gender");
-                    _dt.Columns.Add("Created_On");
+                    _dt.Columns.Add("Email");
 
                     DataRow row = _dt.NewRow();
                     row["response"] = "0";
                     row["Login_ID"] = "";
                     row["User_ID"] = "";
-                    row["First_Name"] = "";
-                    row["Last_Name"] = "";
-                    row["Email"] = "";
+                    row["FirstName"] = "";
                     row["Gender"] = "";
-                    row["Created_On"] = "";
+                    row["Email"] = "";
                     _dt.Rows.Add(row);
 
                     _dt.Rows[0]["response"] = Convert.ToString(_dtresp.Rows[0]["response"]);
+                    _dt.Rows[0]["Login_ID"] = Convert.ToString(_dtresp.Rows[0]["Login_ID"]);
                     _dt.Rows[0]["User_ID"] = Convert.ToString(_dtresp.Rows[0]["User_ID"]);
                     _dt.Rows[0]["FirstName"] = Convert.ToString(_dtresp.Rows[0]["FirstName"]);
                     _dt.Rows[0]["Gender"] = Convert.ToString(_dtresp.Rows[0]["Gender"]);

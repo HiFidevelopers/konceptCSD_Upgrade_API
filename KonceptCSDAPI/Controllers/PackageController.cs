@@ -15,6 +15,7 @@ using KonceptCSDAPI.Models.Package;
 
 namespace KonceptCSDAPI.Controllers
 {
+    [Produces("application/json")]
     [Route("api/package")]
     [ApiController]
     public class PackageController : ControllerBase
@@ -48,7 +49,7 @@ namespace KonceptCSDAPI.Controllers
         //================================= Package =================================//
 
         #region Insert Package
-        [HttpPost("insert-package")]
+        [HttpPost("insertpackage")]
         public ServiceResponseModel InsertPackage([FromBody] PackageInsertUpdateModel pm)
         {
 			try
