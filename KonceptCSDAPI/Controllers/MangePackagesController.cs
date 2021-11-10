@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KonceptCSDAPI.Controllers
 {
-    [Route("api/packages")]
+    [Route("api/[controller]")]
     [ApiController]
     public class MangePackagesController : ControllerBase
     {

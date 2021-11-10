@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Wamp64\\www\\KeyKoncept\\KonceptCSD_Upgrade\\KonceptCSDAPI\\KonceptCSDAPI\\KonceptCSDAPI.csproj": {}
+    "D:\\wamp64\\www\\konceptCSD_Upgrade\\KonceptCSDAPI\\KonceptCSDAPI\\KonceptCSDAPI.csproj": {}
   },
   "projects": {
-    "D:\\Wamp64\\www\\KeyKoncept\\KonceptCSD_Upgrade\\KonceptCSDAPI\\KonceptCSDAPI\\KonceptCSDAPI.csproj": {
+    "D:\\wamp64\\www\\konceptCSD_Upgrade\\KonceptCSDAPI\\KonceptCSDAPI\\KonceptCSDAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Wamp64\\www\\KeyKoncept\\KonceptCSD_Upgrade\\KonceptCSDAPI\\KonceptCSDAPI\\KonceptCSDAPI.csproj",
+        "projectUniqueName": "D:\\wamp64\\www\\konceptCSD_Upgrade\\KonceptCSDAPI\\KonceptCSDAPI\\KonceptCSDAPI.csproj",
         "projectName": "KonceptCSDAPI",
-        "projectPath": "D:\\Wamp64\\www\\KeyKoncept\\KonceptCSD_Upgrade\\KonceptCSDAPI\\KonceptCSDAPI\\KonceptCSDAPI.csproj",
+        "projectPath": "D:\\wamp64\\www\\konceptCSD_Upgrade\\KonceptCSDAPI\\KonceptCSDAPI\\KonceptCSDAPI.csproj",
         "packagesPath": "C:\\Users\\irdha\\.nuget\\packages\\",
-        "outputPath": "D:\\Wamp64\\www\\KeyKoncept\\KonceptCSD_Upgrade\\KonceptCSDAPI\\KonceptCSDAPI\\obj\\",
+        "outputPath": "D:\\wamp64\\www\\konceptCSD_Upgrade\\KonceptCSDAPI\\KonceptCSDAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\irdha\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -46,7 +46,11 @@
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[5.6.3, )"
+              "version": "[6.2.3, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[6.2.3, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",
@@ -67,6 +71,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[5.0.12, 5.0.12]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -75,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
