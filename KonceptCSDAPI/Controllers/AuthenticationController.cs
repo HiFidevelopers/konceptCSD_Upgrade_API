@@ -33,6 +33,7 @@ namespace KonceptCSDAPI.Controllers
         private IAuthenticationManager _IAuthenticationManager;
         private DataTable _dt;
         private DataRow _dr;
+        CommonFunctions _CommonFunctions;
         #endregion Controller Properties
 
         public AuthenticationController(IConfiguration configuration, IHostingEnvironment env)
@@ -42,6 +43,7 @@ namespace KonceptCSDAPI.Controllers
             this._env = env;
             _AuthenticationFactory = new AuthenticationFactory();
             _IAuthenticationManager = _AuthenticationFactory.AuthenticationManager(this._configuration, this._env);
+            _CommonFunctions = new CommonFunctions(configuration, env);
         }
 
         [HttpPost]
@@ -88,7 +90,7 @@ namespace KonceptCSDAPI.Controllers
 
                     #region GENERATE LOGIN TOKEN
 
-                    string token = this.GenerateToken(claims);
+                    string token = _CommonFunctions.GenerateToken(claims);
 
                     #endregion GENERATE LOGIN TOKEN
 
@@ -129,22 +131,6 @@ namespace KonceptCSDAPI.Controllers
                 }
             }
             return _objResponse;
-        }
-
-        public string GenerateToken(List<Claim> claims)
-        {
-            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this._configuration["JWTSetting:Key"]));
-            SigningCredentials signInCred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
-
-            JwtSecurityToken token = new JwtSecurityToken(
-                issuer: this._configuration["JWTSetting:Issuer"],
-                audience: this._configuration["JWTSetting:Audience"],
-                expires: DateTime.Now.AddMinutes(Convert.ToDouble(this._configuration["JWTSetting:ExpiryInMins"])),
-                claims: claims,
-                signingCredentials: signInCred
-            );
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 

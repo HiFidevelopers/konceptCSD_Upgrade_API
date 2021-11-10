@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KonceptCSDAPI.Controllers
 {
-    [Route("api/calendar")]
+    [Route("api/[controller]")]
     [ApiController]
     public class CalendarController : ControllerBase
     {
