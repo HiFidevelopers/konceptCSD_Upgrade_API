@@ -127,6 +127,11 @@ namespace KonceptCSDAPI.Controllers
                     _objResponse.sys_message = token;
                 }
             }
+            else
+            {
+                _objResponse.response = 0;
+                _objResponse.sys_message = "Invalid username or password";
+            }
             return _objResponse;
         }
     }

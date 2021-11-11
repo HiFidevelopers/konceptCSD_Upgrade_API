@@ -67,7 +67,7 @@ namespace KonceptCSDAPI.Controllers
                 _param.Add(new SqlParameter("Price", pm.Price.Trim()));
                 _param.Add(new SqlParameter("Code", pm.Code.Trim()));
                 _param.Add(new SqlParameter("Is_Active", pm.Is_Active));
-                _param.Add(new SqlParameter("Logged_User_ID", Convert.ToInt32(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"))));
+                _param.Add(new SqlParameter("Logged_User_ID", "1"));
                 _objResponse = PackageRequest("[APP_INSERT_UPDATE_PACKAGE]", _param);
             }
             catch (Exception ex)
@@ -99,7 +99,7 @@ namespace KonceptCSDAPI.Controllers
                 _param.Add(new SqlParameter("Price", pm.Price.Trim()));
                 _param.Add(new SqlParameter("Code", pm.Code.Trim()));
                 _param.Add(new SqlParameter("Is_Active", pm.Is_Active));
-                _param.Add(new SqlParameter("Logged_User_ID", Convert.ToInt32(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"))));
+                _param.Add(new SqlParameter("Logged_User_ID",  "1"));
                 _objResponse = PackageRequest("[APP_INSERT_UPDATE_PACKAGE]", _param);
             }
             catch (Exception ex)
