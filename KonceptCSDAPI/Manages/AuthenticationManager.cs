@@ -20,6 +20,7 @@ namespace KonceptCSDAPI.Managers
         private ServiceResponseModel _objResponse = new ServiceResponseModel();
         private CommonHelper _commonHelper = new CommonHelper();
         private DataTable _dtResp = new DataTable();
+        CommonFunctions _CommonFunctions;
 
         public AuthenticationManager(IConfiguration configuration, IHostingEnvironment env)
         {
@@ -34,12 +35,13 @@ namespace KonceptCSDAPI.Managers
             {
                 this._MSSQLGateway = new MSSQLGateway(this._configuration.GetConnectionString("ConnectionPro"));
             }
+            _CommonFunctions = new CommonFunctions(configuration, env);
         }
 
         public DataTable Signin(SiginModel modell)
         {
             param.Add(new SqlParameter("Login", modell.username));
-            param.Add(new SqlParameter("Password", modell.password));
+            param.Add(new SqlParameter("Password", _CommonFunctions.ConvertToSHA512(modell.password)));
 
             DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_FETCH_AUTH_USER_LOGIN", param);
             return _dtResp;

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,6 +37,15 @@ namespace KonceptCSDAPI
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+        // Convert To SHA512
+        public string ConvertToSHA512(string _string)
+        {
+            using (SHA512 shaM = new SHA512Managed())
+            {
+                _string = Convert.ToBase64String(shaM.ComputeHash(Encoding.UTF8.GetBytes(_string)));
+            }
+            return _string;
         }
     }
 }
