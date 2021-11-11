@@ -78,3 +78,6 @@ E:\konceptCSD_Upgrade_API\KonceptCSDAPI\obj\Debug\net5.0\KonceptCSDAPI.dll
 E:\konceptCSD_Upgrade_API\KonceptCSDAPI\obj\Debug\net5.0\ref\KonceptCSDAPI.dll
 E:\konceptCSD_Upgrade_API\KonceptCSDAPI\obj\Debug\net5.0\KonceptCSDAPI.pdb
 E:\konceptCSD_Upgrade_API\KonceptCSDAPI\obj\Debug\net5.0\KonceptCSDAPI.genruntimeconfig.cache
+C:\Users\DGR\Desktop\konceptCSD_Upgrade_API\KonceptCSDAPI\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\DGR\Desktop\konceptCSD_Upgrade_API\KonceptCSDAPI\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\DGR\Desktop\konceptCSD_Upgrade_API\KonceptCSDAPI\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll

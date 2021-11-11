@@ -81,10 +81,10 @@ namespace KonceptCSDAPI.Controllers
                 {
                     List<Claim> claims = new List<Claim>
                     {
-                        new Claim("User_ID", Convert.ToString(_dtresp.Rows[0]["User_ID"]), null),
-                        new Claim("FirstName", Convert.ToString(_dtresp.Rows[0]["FirstName"]), null),
-                        new Claim("Gender",  Convert.ToString(_dtresp.Rows[0]["Gender"]), null),
-                        new Claim("Email",  Convert.ToString(_dtresp.Rows[0]["Email"]), null),
+                        new Claim("User_ID", Convert.ToString(_dtresp.Rows[0]["User_ID"])),
+                        new Claim("FirstName", Convert.ToString(_dtresp.Rows[0]["FirstName"])),
+                        new Claim("Gender",  Convert.ToString(_dtresp.Rows[0]["Gender"])),
+                        new Claim("Email",  Convert.ToString(_dtresp.Rows[0]["Email"])),
                         new Claim(ClaimTypes.Role,  Convert.ToString("User"))
                     };
 
