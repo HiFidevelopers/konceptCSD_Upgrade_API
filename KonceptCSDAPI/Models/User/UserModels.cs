@@ -19,7 +19,7 @@ namespace KonceptCSDAPI.Models.User
 		public Int64? User_ID { get; set; } = 0;
 		public string? Search { get; set; } = string.Empty;
 		public Int64? User_Type_ID { get; set; } = 0;
-		public int? Is_Active { get; set; } = null;
+		public Boolean? Is_Active { get; set; } = true;
 	}
 
 
@@ -30,7 +30,7 @@ namespace KonceptCSDAPI.Models.User
 		[Required(ErrorMessage = "User Type is required.")]
 		public string User_Type { get; set; }
 
-		public int? Is_Active { get; set; } = null;
+		public Boolean? Is_Active { get; set; } = true;
 	}
 
 

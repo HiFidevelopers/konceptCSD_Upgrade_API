@@ -64,7 +64,7 @@ namespace KonceptCSDAPI.Controllers
                 _param.Add(new SqlParameter("Mode", "INSERT"));
                 _param.Add(new SqlParameter("User_Type", utm.User_Type.Trim()));
                 _param.Add(new SqlParameter("Is_Active", utm.Is_Active));
-                _param.Add(new SqlParameter("Logged_User_ID", Convert.ToInt32(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"))));
+                _param.Add(new SqlParameter("Logged_User_ID", "1"));
                 _objResponse = UserRequest("[APP_INSERT_UPDATE_USER_TYPE]", _param);
             }
             catch (Exception ex)
@@ -123,8 +123,8 @@ namespace KonceptCSDAPI.Controllers
                 _param.Add(new SqlParameter("Search", um.Search.Trim()));
                 _param.Add(new SqlParameter("User_Type_ID", um.User_Type_ID));
                 _param.Add(new SqlParameter("Is_Active", um.Is_Active));
-                _param.Add(new SqlParameter("Logged_User_ID", Convert.ToInt32(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"))));
-                _objResponse = UserRequest("[FETCH_USER]", _param);
+                _param.Add(new SqlParameter("Logged_User_ID", "1"));
+                _objResponse = UserRequest("APP_FETCH_USER", _param);
             }
             catch (Exception ex)
             {
