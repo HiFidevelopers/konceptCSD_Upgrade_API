@@ -73,7 +73,7 @@ namespace KonceptCSDAPI.Controllers
             if (_objHelper.checkDBResponse(_dtresp))
             {
                 if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")
-                {
+                { 
                     _objResponse.response = 0;
                     _objResponse.sys_message = Convert.ToString(_dtresp.Rows[0]["message"]);
                 }
