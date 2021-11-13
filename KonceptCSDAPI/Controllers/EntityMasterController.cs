@@ -1,6 +1,6 @@
 ﻿using KonceptCSDAPI.Factory;
 using KonceptCSDAPI.Managers;
-using KonceptCSDAPI.Models.User;
+using KonceptCSDAPI.Models.EntityMaster;
 using KonceptSupportLibrary;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -17,13 +17,12 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-
-
 namespace KonceptCSDAPI.Controllers
 {
-	[Route("api/user")]
-	[ApiController]
-	public class UserController : ControllerBase
+	[Produces("application/json")]
+	[Route("api/entitymaster")]
+	//[Authorize]
+    public class EntityMasterController : ControllerBase
 	{
 		#region Controller Properties
 		private ServiceResponseModel _objResponse = new ServiceResponseModel();
@@ -31,30 +30,30 @@ namespace KonceptCSDAPI.Controllers
 		private CommonHelper _objHelper = new CommonHelper();
 		private MSSQLGateway _MSSQLGateway;
 		private IHostingEnvironment _env;
-		public UserFactory _UserFactory;
-		private IUserManager _IUserManager;
+		public EntityMasterFactory _EntityMasterFactory;
+		private IEntityMasterManager _IEntityMasterManager;
 		private DataTable _dt;
 		private DataRow _dr;
 		CommonFunctions _CommonFunctions;
 		#endregion Controller Properties
 
 
-		public UserController(IConfiguration configuration, IHostingEnvironment env)
+		public EntityMasterController(IConfiguration configuration, IHostingEnvironment env)
 		{
 			// Get connectin string of current solution
 			this._configuration = configuration;
 			this._env = env;
-			_UserFactory = new UserFactory();
-			_IUserManager = _UserFactory.UserManager(this._configuration, this._env);
+			_EntityMasterFactory = new EntityMasterFactory();
+			_IEntityMasterManager = _EntityMasterFactory.EntityMasterManager(this._configuration, this._env);
 			_CommonFunctions = new CommonFunctions(configuration, env);
 		}
 
 
 		[HttpPost]
-		[Route("fetchuser")]
-		#region Fetch User
+		[Route("fetchentitymaster")]
+		#region Fetch Entity Master
 
-		public ServiceResponseModel fetchuser([FromBody] UserFilterModel model)
+		public ServiceResponseModel fetchentitymaster([FromBody] EntityMasterModel model)
 		{
 			#region DATA VALIDATION
 			if (model == null)
@@ -75,49 +74,7 @@ namespace KonceptCSDAPI.Controllers
 			#endregion
 
 
-			DataTable _dtresp = _IUserManager.fetchUser(model);
-			if (_objHelper.checkDBResponse(_dtresp))
-			{
-				if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")
-				{
-					_objResponse.response = 0;
-					_objResponse.sys_message = Convert.ToString(_dtresp.Rows[0]["message"]);
-				}
-				else
-				{
-				}
-			}
-			return _objResponse;
-		}
-		#endregion
-
-
-		[HttpPost]
-		[Route("insertupdateuser")]
-		#region Insert Update User
-
-		public ServiceResponseModel insertupdateuser([FromBody] UserInsertUpdateModel model)
-		{
-			#region DATA VALIDATION
-			if (model == null)
-			{
-				_objResponse.sys_message = _objHelper.GetModelErrorMessages(ModelState);
-				_objResponse.response = 0;
-				return _objResponse;
-			}
-			else
-			{
-				if (!ModelState.IsValid)
-				{
-					_objResponse.sys_message = "input model is not supplied.";
-					_objResponse.response = 0;
-					return _objResponse;
-				}
-			}
-			#endregion
-
-
-			DataTable _dtresp = _IUserManager.insertupdateuser(model);
+			DataTable _dtresp = _IEntityMasterManager.fetchentitymaster(model);
 			if (_objHelper.checkDBResponse(_dtresp))
 			{
 				if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")
