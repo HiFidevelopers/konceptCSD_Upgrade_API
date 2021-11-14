@@ -85,6 +85,8 @@ namespace KonceptCSDAPI.Controllers
 				}
 				else
 				{
+					_objResponse.response = 1;
+					_objResponse.data = _objHelper.ConvertTableToDictionary(_dtresp);
 				}
 			}
 			return _objResponse;
