@@ -36,6 +36,7 @@ namespace KonceptCSDAPI
                         builder.WithOrigins(
                             "http://localhost:4200",
                             "http://csd.konceptedu.com",
+                            "http://csdapi.konceptedu.com",
                             "http://csddev.konceptedu.com"
                         ).AllowAnyHeader().AllowAnyMethod();
                     });
