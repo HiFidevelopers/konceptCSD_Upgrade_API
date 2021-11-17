@@ -62,7 +62,7 @@ namespace KonceptCSDAPI.Managers
 			//User Info
 			if (model.User_ID > 0)
 			{
-				param.Add(new SqlParameter("Mode", model.User_ID));
+				param.Add(new SqlParameter("Mode", "Update"));
 			}
             else
             {
