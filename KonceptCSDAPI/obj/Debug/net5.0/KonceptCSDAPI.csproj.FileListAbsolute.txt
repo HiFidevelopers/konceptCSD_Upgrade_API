@@ -123,7 +123,6 @@ D:\wamp64\www\konceptCSD_Upgrade\KonceptCSDAPI\KonceptCSDAPI\obj\Debug\net5.0\Ko
 D:\wamp64\www\konceptCSD_Upgrade\KonceptCSDAPI\KonceptCSDAPI\obj\Debug\net5.0\ref\KonceptCSDAPI.dll
 D:\wamp64\www\konceptCSD_Upgrade\KonceptCSDAPI\KonceptCSDAPI\obj\Debug\net5.0\KonceptCSDAPI.pdb
 D:\wamp64\www\konceptCSD_Upgrade\KonceptCSDAPI\KonceptCSDAPI\obj\Debug\net5.0\KonceptCSDAPI.genruntimeconfig.cache
-C:\Users\DGR\Desktop\konceptCSD_Upgrade_API\KonceptCSDAPI\obj\Debug\net5.0\KonceptCSDAPI.csproj.AssemblyReference.cache
 D:\wamp64\www\KeyKoncept\konceptCSD_Upgrade\konceptCSD_Upgrade_API\KonceptCSDAPI\bin\Debug\net5.0\appsettings.Development.json
 D:\wamp64\www\KeyKoncept\konceptCSD_Upgrade\konceptCSD_Upgrade_API\KonceptCSDAPI\bin\Debug\net5.0\appsettings.json
 D:\wamp64\www\KeyKoncept\konceptCSD_Upgrade\konceptCSD_Upgrade_API\KonceptCSDAPI\bin\Debug\net5.0\KonceptCSDAPI.StaticWebAssets.xml
