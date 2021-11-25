@@ -103,7 +103,7 @@ namespace KonceptCSDAPI.Models.User
 
 		[Required(ErrorMessage = "User Group Description is required.")]
 		public string User_Group_Description { get; set; }
-		public Boolean? Is_Predefined { get; set; } = true;
+		public Boolean? Is_Predefined { get; set; } = false;
 		public Boolean? Is_Active { get; set; } = true;
 
 		//User Group Access Area Mapping List

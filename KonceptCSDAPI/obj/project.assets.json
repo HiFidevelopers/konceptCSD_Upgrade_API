@@ -652,7 +652,7 @@
       ]
     },
     "runtime.win-arm64.runtime.native.System.Data.SqlClient.sni/4.4.0": {
-      "sha512": "LbrynESTp3bm5O/+jGL8v0Qg5SJlTV08lpIpFesXjF6uGNMWqFnUQbYBJwZTeua6E/Y7FIM1C54Ey1btLWupdg==",
+      "sha512": "5UksVR6VXoKa/Tykm5r6Foux7dTH+O85fHmfvHPIlsSb5ieUj3Vr5Z9JOZHPiCS3IcMvuA/PVJJTN2bFkJconw==",
       "type": "package",
       "path": "runtime.win-arm64.runtime.native.system.data.sqlclient.sni/4.4.0",
       "files": [
@@ -667,7 +667,7 @@
       ]
     },
     "runtime.win-x64.runtime.native.System.Data.SqlClient.sni/4.4.0": {
-      "sha512": "38ugOfkYJqJoX9g6EYRlZB5U2ZJH51UP8ptxZgdpS07FgOEToV+lS11ouNK2PM12Pr6X/PpT5jK82G3DwH/SxQ==",
+      "sha512": "E6BpuCX0Z8QDEgiOyhTPUDYOI3nGzJZg9g/k5PqXwMtJiTswQMXYsyffNmMrjGbQm4JPedNC1Ui8pPUran3wkA==",
       "type": "package",
       "path": "runtime.win-x64.runtime.native.system.data.sqlclient.sni/4.4.0",
       "files": [
@@ -682,7 +682,7 @@
       ]
     },
     "runtime.win-x86.runtime.native.System.Data.SqlClient.sni/4.4.0": {
-      "sha512": "YhEdSQUsTx+C8m8Bw7ar5/VesXvCFMItyZF7G1AUY+OM0VPZUOeAVpJ4Wl6fydBGUYZxojTDR3I6Bj/+BPkJNA==",
+      "sha512": "pCIfMEQxdmJRbcf80AEEZjrMab/x0BfUqSW+CjcwdhzbGmlnW0UVn3HQPMRmNON7S15k+fzoflg48+UOk1wlLQ==",
       "type": "package",
       "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
       "files": [
