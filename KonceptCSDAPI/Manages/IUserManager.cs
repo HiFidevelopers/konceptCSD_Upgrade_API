@@ -10,6 +10,10 @@ namespace KonceptCSDAPI.Managers
 	{
 		DataTable fetchUser(UserFilterModel modell);
 
-		DataTable insertupdateuser(UserInsertUpdateModel modell);
+		DataTable insertUpdateUser(UserInsertUpdateModel modell);
+
+		DataTable fetchUserGroup(UserGroupFilterModel modell);
+
+		DataTable insertUpdateUserGroup(UserGroupInsertUpdateModel modell);
 	}
 }

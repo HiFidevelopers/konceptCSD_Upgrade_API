@@ -49,7 +49,7 @@ namespace KonceptCSDAPI.Managers
 			//param.Add(new SqlParameter("Logged_User_ID", Convert.ToInt32(_commonHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"))));
 			param.Add(new SqlParameter("Logged_User_ID", 1));
 
-			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("[APP_FETCH_USER]", param);
+			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_FETCH_USER", param);
 
 			return _dtResp;
 		}
@@ -57,24 +57,24 @@ namespace KonceptCSDAPI.Managers
 
 
 		#region Insert Update User
-		public DataTable insertupdateuser(UserInsertUpdateModel model)
+		public DataTable insertUpdateUser(UserInsertUpdateModel model)
 		{
 			//User Info
 			if (model.User_ID > 0)
 			{
-				param.Add(new SqlParameter("Mode", "Update"));
+				param.Add(new SqlParameter("Mode", "UPDATE"));
 			}
-            else
-            {
+			else
+			{
 				param.Add(new SqlParameter("Mode", "INSERT"));
-            }
+			}
 			param.Add(new SqlParameter("User_ID", model.User_ID));
 			param.Add(new SqlParameter("User_Type", model.User_Type));
 			param.Add(new SqlParameter("Parent_User_ID", model.Parent_User_ID));
 			param.Add(new SqlParameter("User_Description", model.User_Description));
 			param.Add(new SqlParameter("User_Group_ID", model.User_Group_ID));
 			param.Add(new SqlParameter("FullName", model.FullName));
-			
+
 			param.Add(new SqlParameter("FirstName", model.FirstName.Trim()));
 			param.Add(new SqlParameter("LastName", model.LastName));
 			param.Add(new SqlParameter("Gender", model.Gender));
@@ -88,7 +88,7 @@ namespace KonceptCSDAPI.Managers
 
 			//User Login
 			param.Add(new SqlParameter("Username", model.Username.Trim()));
-			param.Add(new SqlParameter("Password", model.Password.Trim()));
+			param.Add(new SqlParameter("Password", _CommonFunctions.ConvertToSHA512(model.Password.Trim())));
 
 			//User Profile
 			param.Add(new SqlParameter("Profile_Pic", model.Profile_Pic));
@@ -103,7 +103,58 @@ namespace KonceptCSDAPI.Managers
 			//param.Add(new SqlParameter("Logged_User_ID", Convert.ToInt32(_commonHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"))));
 			param.Add(new SqlParameter("Logged_User_ID", 1));
 
-			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("[APP_INSERT_UPDATE_USER]", param);
+			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_INSERT_UPDATE_USER", param);
+
+			return _dtResp;
+		}
+		#endregion
+
+
+		#region Fetch User Group
+		public DataTable fetchUserGroup(UserGroupFilterModel model)
+		{
+			param.Add(new SqlParameter("User_Group_ID", model.User_Group_ID));
+			param.Add(new SqlParameter("Search", model.Search.Trim()));
+			param.Add(new SqlParameter("User_Group_Name", model.User_Group_Name.Trim()));
+			param.Add(new SqlParameter("Is_Predefined", model.Is_Predefined));
+			param.Add(new SqlParameter("Is_Active", model.Is_Active));
+			//param.Add(new SqlParameter("Logged_User_ID", Convert.ToInt32(_commonHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"))));
+			param.Add(new SqlParameter("Logged_User_ID", 1));
+
+			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_FETCH_USER_GROUP", param);
+
+			return _dtResp;
+		}
+		#endregion
+
+
+		#region Insert Update User Group
+		public DataTable insertUpdateUserGroup(UserGroupInsertUpdateModel model)
+		{
+			//User Info
+			if (model.User_Group_ID > 0)
+			{
+				param.Add(new SqlParameter("Mode", "UPDATE"));
+			}
+			else
+			{
+				param.Add(new SqlParameter("Mode", "INSERT"));
+			}
+			param.Add(new SqlParameter("User_Group_ID", model.User_Group_ID));
+			param.Add(new SqlParameter("User_Group_Name", model.User_Group_Name));
+			param.Add(new SqlParameter("User_Group_Description", model.User_Group_Description));
+			param.Add(new SqlParameter("Is_Predefined", model.Is_Predefined));
+			param.Add(new SqlParameter("Is_Active", model.Is_Active));
+
+
+			//USER_GROUP_ACCESS_AREA_MAPPING
+			param.Add(new SqlParameter("TBL_USER_GROUP_ACCESS_AREA_MAPPING", _commonHelper.ConvertListToTable(model.AccessAreaList)));
+
+
+			//param.Add(new SqlParameter("Logged_User_ID", Convert.ToInt32(_commonHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"))));
+			param.Add(new SqlParameter("Logged_User_ID", 1));
+
+			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_INSERT_UPDATE_USER_GROUP", param);
 
 			return _dtResp;
 		}
