@@ -54,7 +54,7 @@ namespace KonceptCSDAPI.Controllers
 		[Route("fetchuser")]
 		#region Fetch User
 
-		public ServiceResponseModel fetchuser([FromBody] UserFilterModel model)
+		public ServiceResponseModel fetchUser([FromBody] UserFilterModel model)
 		{
 			#region DATA VALIDATION
 			if (model == null)
@@ -98,7 +98,7 @@ namespace KonceptCSDAPI.Controllers
 		[Route("insertupdateuser")]
 		#region Insert Update User
 
-		public ServiceResponseModel insertupdateuser([FromBody] UserInsertUpdateModel model)
+		public ServiceResponseModel insertUpdateUser([FromBody] UserInsertUpdateModel model)
 		{
 			#region DATA VALIDATION
 			if (model == null)
@@ -119,7 +119,95 @@ namespace KonceptCSDAPI.Controllers
 			#endregion
 
 
-			DataTable _dtresp = _IUserManager.insertupdateuser(model);
+			DataTable _dtresp = _IUserManager.insertUpdateUser(model);
+			if (_objHelper.checkDBResponse(_dtresp))
+			{
+				if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")
+				{
+					_objResponse.response = 0;
+					_objResponse.sys_message = Convert.ToString(_dtresp.Rows[0]["message"]);
+				}
+				else
+				{
+					_objResponse.response = 1;
+					_objResponse.data = _objHelper.ConvertTableToDictionary(_dtresp);
+				}
+			}
+			return _objResponse;
+		}
+		#endregion
+
+
+		[HttpPost]
+		[Route("fetchusergroup")]
+		#region Fetch User Group
+
+		public ServiceResponseModel fetchUserGroup([FromBody] UserGroupFilterModel model)
+		{
+			#region DATA VALIDATION
+			if (model == null)
+			{
+				_objResponse.sys_message = _objHelper.GetModelErrorMessages(ModelState);
+				_objResponse.response = 0;
+				return _objResponse;
+			}
+			else
+			{
+				if (!ModelState.IsValid)
+				{
+					_objResponse.sys_message = "input model is not supplied.";
+					_objResponse.response = 0;
+					return _objResponse;
+				}
+			}
+			#endregion
+
+
+			DataTable _dtresp = _IUserManager.fetchUserGroup(model);
+			if (_objHelper.checkDBResponse(_dtresp))
+			{
+				if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")
+				{
+					_objResponse.response = 0;
+					_objResponse.sys_message = Convert.ToString(_dtresp.Rows[0]["message"]);
+				}
+				else
+				{
+					_objResponse.response = 1;
+					_objResponse.data = _objHelper.ConvertTableToDictionary(_dtresp);
+				}
+			}
+			return _objResponse;
+		}
+		#endregion
+
+
+		[HttpPost]
+		[Route("insertupdateusergroup")]
+		#region Insert Update User
+
+		public ServiceResponseModel insertUpdateUserGroup([FromBody] UserGroupInsertUpdateModel model)
+		{
+			#region DATA VALIDATION
+			if (model == null)
+			{
+				_objResponse.sys_message = _objHelper.GetModelErrorMessages(ModelState);
+				_objResponse.response = 0;
+				return _objResponse;
+			}
+			else
+			{
+				if (!ModelState.IsValid)
+				{
+					_objResponse.sys_message = "input model is not supplied.";
+					_objResponse.response = 0;
+					return _objResponse;
+				}
+			}
+			#endregion
+
+
+			DataTable _dtresp = _IUserManager.insertUpdateUserGroup(model);
 			if (_objHelper.checkDBResponse(_dtresp))
 			{
 				if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")

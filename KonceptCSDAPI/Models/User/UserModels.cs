@@ -70,7 +70,6 @@ namespace KonceptCSDAPI.Models.User
 		public string Password { get; set; }
 
 
-
 		//User Profile Info
 		public string Profile_Pic { get; set; }
 		public string? Address { get; set; } = string.Empty;
@@ -82,8 +81,52 @@ namespace KonceptCSDAPI.Models.User
 		public string? Facebook_Profile_URL { get; set; } = string.Empty;
 		public string? LinkedIn_Profile_URL { get; set; } = string.Empty;
 
+	}
+
+
+	public class UserGroupFilterModel
+	{
+		public Int64? User_Group_ID { get; set; } = 0;
+		public string? Search { get; set; } = string.Empty;
+		public string? User_Group_Name { get; set; } = string.Empty;
+		public Boolean? Is_Predefined { get; set; } = true;
+		public Boolean? Is_Active { get; set; } = true;
+	}
+
+
+	public class UserGroupInsertUpdateModel
+	{
+		public Int64? User_Group_ID { get; set; } = 0;
+
+		[Required(ErrorMessage = "User Group Name is required.")]
+		public string User_Group_Name { get; set; }
+
+		[Required(ErrorMessage = "User Group Description is required.")]
+		public string User_Group_Description { get; set; }
+		public Boolean? Is_Predefined { get; set; } = true;
+		public Boolean? Is_Active { get; set; } = true;
+
+		//User Group Access Area Mapping List
+		[Required(ErrorMessage = "User Group Access Area Mapping List is required.")]
+		public List<AccessAreaList> AccessAreaList { get; set; }
 
 	}
 
+
+	public class AccessAreaList
+	{
+
+		public Int64? User_Group_Access_Area_Mapping_ID { get; set; } = 0;
+		public Int64? User_Group_ID { get; set; } = 0;
+
+		[Required(ErrorMessage = "User Group Access Area ID is required for mapping.")]
+		public Int64? User_Group_Access_Area_ID { get; set; } = 0;
+
+		public Boolean? Is_Create { get; set; } = true;
+		public Boolean? Is_Retrieve { get; set; } = true;
+		public Boolean? Is_Update { get; set; } = true;
+		public Boolean? Is_Delete { get; set; } = true;
+
+	}
 
 }
