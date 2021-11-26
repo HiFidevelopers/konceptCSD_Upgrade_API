@@ -122,7 +122,7 @@ namespace KonceptCSDAPI.Managers
             //param.Add(new SqlParameter("Logged_User_ID", Convert.ToInt32(_commonHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"))));
             param.Add(new SqlParameter("Logged_User_ID", 1));
 
-            DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_FETCH_USER_GROUP", param);
+            DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_FETCH_USER_GROUP_WITH_ACCESS_AREA_WITH_MAPPING", param);
 
             return _dtResp;
         }
