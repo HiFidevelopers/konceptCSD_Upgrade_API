@@ -126,7 +126,7 @@ namespace KonceptSupportLibrary
                 smtp.Port = 587;
                 smtp.UseDefaultCredentials = false;
                 smtp.Credentials = new System.Net.NetworkCredential
-                ("no-reply@keykoncept.com", "Focus2018$");
+                ("no-reply@keykoncept.com", "koncept2021");
 
                 //Or your Smtp Email ID and Password
                 smtp.EnableSsl = false;
