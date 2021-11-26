@@ -94,6 +94,7 @@ namespace KonceptCSDAPI.Managers
             param.Add(new SqlParameter("Profile_Pic", model.Profile_Pic));
             param.Add(new SqlParameter("Address", model.Address));
             param.Add(new SqlParameter("Address_Other", model.Address_Other));
+            param.Add(new SqlParameter("City", model.City));
             param.Add(new SqlParameter("State_ID", model.State_ID));
             param.Add(new SqlParameter("Country_ID", model.Country_ID));
             param.Add(new SqlParameter("Zip_Code", model.Zip_Code));
