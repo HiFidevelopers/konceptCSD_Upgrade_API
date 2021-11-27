@@ -126,6 +126,7 @@ namespace KonceptCSDAPI.Models.User
 		public Boolean? Is_Retrieve { get; set; } = true;
 		public Boolean? Is_Update { get; set; } = true;
 		public Boolean? Is_Delete { get; set; } = true;
+		public Boolean? Is_Active { get; set; } = true;
 
 	}
 

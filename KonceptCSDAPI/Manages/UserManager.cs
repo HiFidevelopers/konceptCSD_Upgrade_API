@@ -122,7 +122,7 @@ namespace KonceptCSDAPI.Managers
             //param.Add(new SqlParameter("Logged_User_ID", Convert.ToInt32(_commonHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"))));
             param.Add(new SqlParameter("Logged_User_ID", 1));
 
-            DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_FETCH_USER_GROUP", param);
+            DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_FETCH_USER_GROUP_WITH_ACCESS_AREA_WITH_MAPPING", param);
 
             return _dtResp;
         }
@@ -132,32 +132,6 @@ namespace KonceptCSDAPI.Managers
         #region Insert Update User Group
         public DataTable insertUpdateUserGroup(UserGroupInsertUpdateModel model)
         {
-            /** CREATED DATATABLE FOR UPLOADING DOCUMENT */
-            DataTable _dtSqlParameter = new DataTable();
-            _dtSqlParameter.Columns.Add("User_Group_Access_Area_Mapping_ID");
-            _dtSqlParameter.Columns.Add("User_Group_ID");
-            _dtSqlParameter.Columns.Add("User_Group_Access_Area_ID");
-            _dtSqlParameter.Columns.Add("Is_Create");
-            _dtSqlParameter.Columns.Add("Is_Retrieve");
-            _dtSqlParameter.Columns.Add("Is_Update");
-            _dtSqlParameter.Columns.Add("Is_Delete");
-            _dtSqlParameter.Columns.Add("Is_Active");
-
-            for (int i = 0; i < model.AccessAreaList.Count; i++)
-            {
-                DataRow _rw = _dtSqlParameter.NewRow();
-                _rw["User_Group_Access_Area_Mapping_ID"] = model.AccessAreaList[i].User_Group_Access_Area_Mapping_ID;
-                _rw["User_Group_ID"] = model.AccessAreaList[i].User_Group_ID;
-                _rw["User_Group_Access_Area_ID"] = model.AccessAreaList[i].User_Group_Access_Area_ID;
-                _rw["Is_Create"] = model.AccessAreaList[i].Is_Create;
-                _rw["Is_Retrieve"] = model.AccessAreaList[i].Is_Retrieve;
-                _rw["Is_Update"] = model.AccessAreaList[i].Is_Update;
-                _rw["Is_Delete"] = model.AccessAreaList[i].Is_Delete;
-                _rw["Is_Active"] = "1";
-
-                _dtSqlParameter.Rows.Add(_rw);
-            }
-
             //User Info
             if (model.User_Group_ID > 0)
             {
@@ -175,7 +149,7 @@ namespace KonceptCSDAPI.Managers
 
 
             //USER_GROUP_ACCESS_AREA_MAPPING
-            param.Add(new SqlParameter("TBL_USER_GROUP_ACCESS_AREA_MAPPING", _dtSqlParameter));
+            param.Add(new SqlParameter("TBL_USER_GROUP_ACCESS_AREA_MAPPING", _commonHelper.ConvertListToTable(model.AccessAreaList)));
 
 
             //param.Add(new SqlParameter("Logged_User_ID", Convert.ToInt32(_commonHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"))));

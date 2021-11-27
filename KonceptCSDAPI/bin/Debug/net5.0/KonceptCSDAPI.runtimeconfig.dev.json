@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\irdha\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\irdha\\.nuget\\packages"
+    ]
+  }
+}

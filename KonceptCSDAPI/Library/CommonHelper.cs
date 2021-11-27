@@ -116,17 +116,17 @@ namespace KonceptSupportLibrary
                 //if (email.CCMailID != null && email.CCMailID != "")
                 //    mail.CC.Add(email.CCMailID);
 
-                mail.From = new MailAddress("support@focus-m-s.com");
+                mail.From = new MailAddress("no-reply@keykoncept.com");
                 mail.Subject = subject;
                 string Body = body;
                 mail.Body = Body;
                 mail.IsBodyHtml = true;
                 SmtpClient smtp = new SmtpClient();
-                smtp.Host = "mail.focus-m-s.com"; //Or Your SMTP Server Address
+                smtp.Host = "mail.keykoncept.com"; //Or Your SMTP Server Address
                 smtp.Port = 587;
                 smtp.UseDefaultCredentials = false;
                 smtp.Credentials = new System.Net.NetworkCredential
-                ("support@focus-m-s.com", "Focus2018$");
+                ("no-reply@keykoncept.com", "koncept2021");
 
                 //Or your Smtp Email ID and Password
                 smtp.EnableSsl = false;
