@@ -74,6 +74,7 @@ namespace KonceptCSDAPI.Controllers
 			}
 			#endregion
 
+			model.Created_By = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "Login_ID"));
 
 			DataTable _dtresp = _IUserManager.fetchUser(model);
 			if (_objHelper.checkDBResponse(_dtresp))
@@ -118,6 +119,7 @@ namespace KonceptCSDAPI.Controllers
 			}
 			#endregion
 
+			model.Created_By = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "Login_ID"));
 
 			DataTable _dtresp = _IUserManager.insertUpdateUser(model);
 			if (_objHelper.checkDBResponse(_dtresp))
@@ -162,6 +164,7 @@ namespace KonceptCSDAPI.Controllers
 			}
 			#endregion
 
+			model.Created_By = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "Login_ID"));
 
 			DataTable _dtresp = _IUserManager.fetchUserGroup(model);
 			if (_objHelper.checkDBResponse(_dtresp))
@@ -206,6 +209,7 @@ namespace KonceptCSDAPI.Controllers
 			}
 			#endregion
 
+			model.Created_By = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "Login_ID"));
 
 			DataTable _dtresp = _IUserManager.insertUpdateUserGroup(model);
 			if (_objHelper.checkDBResponse(_dtresp))

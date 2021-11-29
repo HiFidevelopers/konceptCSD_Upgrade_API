@@ -73,6 +73,7 @@ namespace KonceptCSDAPI.Controllers
 			}
 			#endregion
 
+			model.Created_By = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "Login_ID"));
 
 			DataTable _dtresp = _IEntityMasterManager.fetchentitymaster(model);
 			if (_objHelper.checkDBResponse(_dtresp))

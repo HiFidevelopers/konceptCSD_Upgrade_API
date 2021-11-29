@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -42,27 +43,30 @@ namespace KonceptCSDAPI
                     });
             });
 
-            var tokenValidationParameters = new TokenValidationParameters
+            #region JWT Auth Initialization - DO NOT EDIT -> EDIT PARAMS IN `appsettings.json`
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateIssuerSigningKey = true,
-                ValidateLifetime = true,
-                ValidIssuer = this.Configuration["JWTSetting:Issuer"],
-                ValidAudience = this.Configuration["JWTSetting:Audience"],
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.Configuration["JWTSetting:Key"]))
-            };
-
-            services.AddAuthentication(o =>
-            {
-                o.DefaultAuthenticateScheme = "JWTKey";
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidateLifetime = true,
+                    ValidIssuer = this.Configuration["JWTSetting:Issuer"],
+                    ValidAudience = this.Configuration["JWTSetting:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.Configuration["JWTSetting:Key"]))
+                };
             });
+            #endregion
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "KonceptCSDAPI", Version = "v1" });
             });
+            services.AddDistributedMemoryCache();
+            services.AddMemoryCache();
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,9 +81,8 @@ namespace KonceptCSDAPI
             
             app.UseCors(AllowedOrigins);
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
