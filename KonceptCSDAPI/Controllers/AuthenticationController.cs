@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -28,6 +29,7 @@ namespace KonceptCSDAPI.Controllers
 		private IConfiguration _configuration;
 		private CommonHelper _objHelper = new CommonHelper();
 		private MSSQLGateway _MSSQLGateway;
+        private IDistributedCache _distributedCache;
 		private IHostingEnvironment _env;
 		public AuthenticationFactory _AuthenticationFactory;
 		private IAuthenticationManager _IAuthenticationManager;
@@ -36,11 +38,12 @@ namespace KonceptCSDAPI.Controllers
 		CommonFunctions _CommonFunctions;
 		#endregion Controller Properties
 
-		public AuthenticationController(IConfiguration configuration, IHostingEnvironment env)
+		public AuthenticationController(IConfiguration configuration, IHostingEnvironment env, IDistributedCache distributedCache)
 		{
 			// Get connectin string of current solution
 			this._configuration = configuration;
 			this._env = env;
+            this._distributedCache = distributedCache;
 			_AuthenticationFactory = new AuthenticationFactory();
 			_IAuthenticationManager = _AuthenticationFactory.AuthenticationManager(this._configuration, this._env);
 			_CommonFunctions = new CommonFunctions(configuration, env);
@@ -141,6 +144,9 @@ namespace KonceptCSDAPI.Controllers
 					_objResponse.response = 1;
 					_objResponse.data = _objHelper.ConvertTableToDictionary(_dt);
 					_objResponse.sys_message = token;
+
+                    // Set token string on server side by using IDistributedCache for cache
+                    this._distributedCache.SetString("token", _objResponse.sys_message);
 				}
 			}
 			else
