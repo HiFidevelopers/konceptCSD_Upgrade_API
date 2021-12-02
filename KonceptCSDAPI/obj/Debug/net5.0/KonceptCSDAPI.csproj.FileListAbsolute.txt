@@ -214,3 +214,4 @@ C:\Users\DGR\Desktop\konceptCSD_Upgrade_API\KonceptCSDAPI\obj\Debug\net5.0\Konce
 C:\Users\DGR\Desktop\konceptCSD_Upgrade_API\KonceptCSDAPI\obj\Debug\net5.0\ref\KonceptCSDAPI.dll
 C:\Users\DGR\Desktop\konceptCSD_Upgrade_API\KonceptCSDAPI\obj\Debug\net5.0\KonceptCSDAPI.pdb
 C:\Users\DGR\Desktop\konceptCSD_Upgrade_API\KonceptCSDAPI\obj\Debug\net5.0\KonceptCSDAPI.genruntimeconfig.cache
+C:\Users\DGR\Desktop\konceptCSD_Upgrade_API\KonceptCSDAPI\obj\Debug\net5.0\KonceptCSDAPI.csproj.AssemblyReference.cache
