@@ -20,7 +20,7 @@ namespace KonceptCSDAPI.Models.EntityMaster
 		public string? SQLPARAM1 { get; set; } = string.Empty;
 		public string? SQLPARAM2 { get; set; } = string.Empty;
 		public string? SQLPARAM3 { get; set; } = string.Empty;
-		public Int64? Created_By { get; set; } = 0;
+		public Int64? Logged_User_ID { get; set; } = 0;
 	}
 
 }

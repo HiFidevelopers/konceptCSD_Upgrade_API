@@ -12,7 +12,7 @@ namespace KonceptCSDAPI.Models.User
 	{
 		//[Required(ErrorMessage = "User ID is required.")]
 		public Int64? User_ID { get; set; } = 0;
-		public Int64? Created_By { get; set; } = 0;
+		public Int64? Logged_User_ID { get; set; } = 0;
 	}
 
 	public class UserFilterModel
@@ -22,7 +22,7 @@ namespace KonceptCSDAPI.Models.User
 		public string User_Type { get; set; } = string.Empty;
 		public Int64? User_Group_ID { get; set; } = 0;
 		public Boolean? Is_Active { get; set; } = true;
-		public Int64? Created_By { get; set; } = 0;
+		public Int64? Logged_User_ID { get; set; } = 0;
 	}
 
 
@@ -82,7 +82,7 @@ namespace KonceptCSDAPI.Models.User
 		public string? Zip_Code { get; set; } = string.Empty;
 		public string? Facebook_Profile_URL { get; set; } = string.Empty;
 		public string? LinkedIn_Profile_URL { get; set; } = string.Empty;
-		public Int64? Created_By { get; set; } = 0;
+		public Int64? Logged_User_ID { get; set; } = 0;
 
 	}
 
@@ -94,7 +94,7 @@ namespace KonceptCSDAPI.Models.User
 		public string? User_Group_Name { get; set; } = string.Empty;
 		public Boolean? Is_Predefined { get; set; } = true;
 		public Boolean? Is_Active { get; set; } = true;
-		public Int64? Created_By { get; set; } = 0;
+		public Int64? Logged_User_ID { get; set; } = 0;
 	}
 
 
@@ -113,7 +113,7 @@ namespace KonceptCSDAPI.Models.User
 		//User Group Access Area Mapping List
 		[Required(ErrorMessage = "User Group Access Area Mapping List is required.")]
 		public List<AccessAreaList> AccessAreaList { get; set; }
-		public Int64? Created_By { get; set; } = 0;
+		public Int64? Logged_User_ID { get; set; } = 0;
 
 	}
 

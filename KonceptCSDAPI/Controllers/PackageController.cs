@@ -1,159 +1,142 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
+﻿using KonceptCSDAPI.Factory;
+using KonceptCSDAPI.Managers;
+using KonceptCSDAPI.Models.Package;
 using KonceptSupportLibrary;
-using KonceptCSDAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Collections.Generic;
 using System.Data;
-using KonceptCSDAPI.Models.Package;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace KonceptCSDAPI.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/package")]
-    [ApiController]
-    public class PackageController : ControllerBase
-    {
-        #region Controller Properties
-        private ServiceResponseModel _objResponse = new ServiceResponseModel();
-        private IConfiguration _configuration;
-        private CommonHelper _objHelper = new CommonHelper();
-        private MSSQLGateway _MSSQLGateway;
-        private IHostingEnvironment _env;
-        #endregion Controller Properties
-
-        public PackageController(IConfiguration configuration, IHostingEnvironment env)
-        {
-            // Get connectin string of current solution
-            this._configuration = configuration;
-            this._env = env;
-            if (_env.IsDevelopment() || _env.EnvironmentName.ToLower() == "localhost")
-            {
-                this._MSSQLGateway = new MSSQLGateway(this._configuration.GetConnectionString("ConnectionDev"));
-            }
-            else if (_env.IsProduction())
-            {
-                this._MSSQLGateway = new MSSQLGateway(this._configuration.GetConnectionString("ConnectionPro"));
-            }
-        }
-
-        List<SqlParameter> _param = new List<SqlParameter>();
+	[Route("api/package")]
+	[ApiController]
+	public class PackageController : ControllerBase
+	{
+		#region Controller Properties
+		private ServiceResponseModel _objResponse = new ServiceResponseModel();
+		private IConfiguration _configuration;
+		private CommonHelper _objHelper = new CommonHelper();
+		private MSSQLGateway _MSSQLGateway;
+		private IHostingEnvironment _env;
+		public PackageFactory _PackageFactory;
+		private IPackageManager _IPackageManager;
+		private DataTable _dt;
+		private DataRow _dr;
+		CommonFunctions _CommonFunctions;
+		#endregion Controller Properties
 
 
-        //================================= Package =================================//
+		public PackageController(IConfiguration configuration, IHostingEnvironment env)
+		{
+			// Get connectin string of current solution
+			this._configuration = configuration;
+			this._env = env;
+			_PackageFactory = new PackageFactory();
+			_IPackageManager = _PackageFactory.PackageManager(this._configuration, this._env);
+			_CommonFunctions = new CommonFunctions(configuration, env);
+		}
 
-        #region Insert Package
-        [HttpPost("insertpackage")]
-        public ServiceResponseModel InsertPackage([FromBody] PackageInsertUpdateModel pm)
-        {
-			try
+
+		[HttpPost]
+		[Route("fetchpackage")]
+		#region Fetch Package
+
+		public ServiceResponseModel fetchPackage([FromBody] PackageFilterModel model)
+		{
+			#region DATA VALIDATION
+			if (model == null)
 			{
-				// Check validation
+				_objResponse.sys_message = _objHelper.GetModelErrorMessages(ModelState);
+				_objResponse.response = 0;
+				return _objResponse;
+			}
+			else
+			{
 				if (!ModelState.IsValid)
 				{
+					_objResponse.sys_message = "input model is not supplied.";
 					_objResponse.response = 0;
-					_objResponse.sys_message = _objHelper.GetModelErrorMessages(ModelState);
 					return _objResponse;
 				}
+			}
+			#endregion
 
-                _param.Add(new SqlParameter("Mode", "INSERT"));
-                _param.Add(new SqlParameter("Package", pm.Package.Trim()));
-                _param.Add(new SqlParameter("Price", pm.Price.Trim()));
-                _param.Add(new SqlParameter("Code", pm.Code.Trim()));
-                _param.Add(new SqlParameter("Is_Active", pm.Is_Active));
-                _param.Add(new SqlParameter("Logged_User_ID", "1"));
-                _objResponse = PackageRequest("[APP_INSERT_UPDATE_PACKAGE]", _param);
-            }
-            catch (Exception ex)
-            {
-                _objResponse.response = 0;
-                _objResponse.sys_message = ex.Message;
-            }
-            return _objResponse;
-        }
-        #endregion
+			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "Login_ID"));
 
-        #region Update Package
-        [HttpPost("update-package")]
-        public ServiceResponseModel UpdatePackage([FromBody] PackageInsertUpdateModel pm)
-        {
-            try
-            {
-                // Check validation
-                if (!ModelState.IsValid)
-                {
-                    _objResponse.response = 0;
-                    _objResponse.sys_message = _objHelper.GetModelErrorMessages(ModelState);
-                    return _objResponse;
-                }
-
-                _param.Add(new SqlParameter("Mode", "UPDATE"));
-                _param.Add(new SqlParameter("Package_ID", pm.Package_ID));
-                _param.Add(new SqlParameter("Package", pm.Package.Trim()));
-                _param.Add(new SqlParameter("Price", pm.Price.Trim()));
-                _param.Add(new SqlParameter("Code", pm.Code.Trim()));
-                _param.Add(new SqlParameter("Is_Active", pm.Is_Active));
-                _param.Add(new SqlParameter("Logged_User_ID",  "1"));
-                _objResponse = PackageRequest("[APP_INSERT_UPDATE_PACKAGE]", _param);
-            }
-            catch (Exception ex)
-            {
-                _objResponse.response = 0;
-                _objResponse.sys_message = ex.Message;
-            }
-            return _objResponse;
-        }
-        #endregion
+			DataTable _dtresp = _IPackageManager.fetchPackage(model);
+			if (_objHelper.checkDBResponse(_dtresp))
+			{
+				if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")
+				{
+					_objResponse.response = 0;
+					_objResponse.sys_message = Convert.ToString(_dtresp.Rows[0]["message"]);
+				}
+				else
+				{
+					_objResponse.response = 1;
+					_objResponse.data = _objHelper.ConvertTableToDictionary(_dtresp);
+				}
+			}
+			return _objResponse;
+		}
+		#endregion
 
 
-        // Non API Route Methods
-        #region Package Request and Response
-        private ServiceResponseModel PackageRequest(string procedureName, List<SqlParameter> sp)
-        {
-            // Execute procedure with parameters for post data
-            DataTable dtresp = _MSSQLGateway.ExecuteProcedure(Convert.ToString(procedureName), sp);
-            if (_objHelper.checkDBResponse(dtresp))
-            {
-                if (Convert.ToInt32(Convert.ToString(dtresp.Rows[0]["response"])) <= 0)
-                {
-                    _objResponse.response = Convert.ToInt32(Convert.ToString(dtresp.Rows[0]["response"]));
-                    _objResponse.sys_message = Convert.ToString(dtresp.Rows[0]["message"].ToString());
-                }
-                else
-                {
-                    _objResponse.response = Convert.ToInt32(dtresp.Rows[0]["response"]);
-                    _objResponse.data = _objHelper.ConvertTableToDictionary(dtresp);
-                    _objResponse.sys_message = Convert.ToString(dtresp.Rows[0]["message"].ToString());
-                }
-            }
-            return _objResponse;
-        }
+		[HttpPost]
+		[Route("insertupdatepackage")]
+		#region Insert Update Package
 
-        private ServiceResponseModel PackageResponse(string procedureName, List<SqlParameter> sp)
-        {
-            // Execute procedure with parameters for get data
-            DataTable dtresp = _MSSQLGateway.ExecuteProcedure(Convert.ToString(procedureName), sp);
-            if (_objHelper.checkDBResponse(dtresp))
-            {
-                if (Convert.ToInt32(Convert.ToString(dtresp.Rows[0]["response"])) <= 0)
-                {
-                    _objResponse.response = Convert.ToInt32(Convert.ToString(dtresp.Rows[0]["response"]));
-                    _objResponse.sys_message = Convert.ToString(dtresp.Rows[0]["message"].ToString());
-                }
-                else
-                {
-                    _objResponse.response = Convert.ToInt32(dtresp.Rows[0]["response"]); ;
-                    _objResponse.data = _objHelper.ConvertTableToDictionary(dtresp);
-                }
-            }
-            return _objResponse;
-        }
-        #endregion
-    }
+		public ServiceResponseModel insertUpdatePackage([FromBody] PackageInsertUpdateModel model)
+		{
+			#region DATA VALIDATION
+			if (model == null)
+			{
+				_objResponse.sys_message = _objHelper.GetModelErrorMessages(ModelState);
+				_objResponse.response = 0;
+				return _objResponse;
+			}
+			else
+			{
+				if (!ModelState.IsValid)
+				{
+					_objResponse.sys_message = "input model is not supplied.";
+					_objResponse.response = 0;
+					return _objResponse;
+				}
+			}
+			#endregion
+
+			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "Login_ID"));
+
+			DataTable _dtresp = _IPackageManager.insertUpdatePackage(model);
+			if (_objHelper.checkDBResponse(_dtresp))
+			{
+				if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")
+				{
+					_objResponse.response = 0;
+					_objResponse.sys_message = Convert.ToString(_dtresp.Rows[0]["message"]);
+				}
+				else
+				{
+					_objResponse.response = 1;
+					_objResponse.data = _objHelper.ConvertTableToDictionary(_dtresp);
+				}
+			}
+			return _objResponse;
+		}
+		#endregion
+
+
+	}
 }
