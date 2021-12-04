@@ -47,7 +47,7 @@ namespace KonceptCSDAPI.Managers
 			param.Add(new SqlParameter("SQLPARAM1", model.SQLPARAM.Trim()));
 			param.Add(new SqlParameter("SQLPARAM2", model.SQLPARAM.Trim()));
 			param.Add(new SqlParameter("SQLPARAM3", model.SQLPARAM.Trim()));
-			param.Add(new SqlParameter("Logged_User_ID", model.Created_By));
+			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
 
 			//param.Add(new SqlParameter("Logged_User_ID", Convert.ToInt32(_commonHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"))));
 

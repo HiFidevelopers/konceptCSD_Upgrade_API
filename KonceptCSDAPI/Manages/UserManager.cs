@@ -46,7 +46,7 @@ namespace KonceptCSDAPI.Managers
             param.Add(new SqlParameter("User_Type", model.User_Type));
             param.Add(new SqlParameter("User_Group_ID", model.User_Group_ID));
             param.Add(new SqlParameter("Is_Active", model.Is_Active));
-            param.Add(new SqlParameter("Logged_User_ID", model.Created_By));
+            param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
 
             DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_FETCH_USER", param);
 
@@ -100,7 +100,7 @@ namespace KonceptCSDAPI.Managers
             param.Add(new SqlParameter("Facebook_Profile_URL", model.Facebook_Profile_URL));
             param.Add(new SqlParameter("LinkedIn_Profile_URL", model.LinkedIn_Profile_URL));
 
-            param.Add(new SqlParameter("Logged_User_ID", model.Created_By));
+            param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
 
             DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_INSERT_UPDATE_USER", param);
 
@@ -117,7 +117,7 @@ namespace KonceptCSDAPI.Managers
             param.Add(new SqlParameter("User_Group_Name", model.User_Group_Name.Trim()));
             param.Add(new SqlParameter("Is_Predefined", model.Is_Predefined));
             param.Add(new SqlParameter("Is_Active", model.Is_Active));
-            param.Add(new SqlParameter("Logged_User_ID", model.Created_By));
+            param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
 
             DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_FETCH_USER_GROUP_WITH_ACCESS_AREA_WITH_MAPPING", param);
 
@@ -149,7 +149,7 @@ namespace KonceptCSDAPI.Managers
             param.Add(new SqlParameter("TBL_USER_GROUP_ACCESS_AREA_MAPPING", _commonHelper.ConvertListToTable(model.AccessAreaList)));
 
 
-            param.Add(new SqlParameter("Logged_User_ID", model.Created_By));
+            param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
 
             DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_INSERT_UPDATE_USER_GROUP", param);
 
