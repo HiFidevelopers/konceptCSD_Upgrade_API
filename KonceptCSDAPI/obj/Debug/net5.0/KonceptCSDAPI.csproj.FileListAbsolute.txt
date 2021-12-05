@@ -203,7 +203,6 @@ C:\Users\DGR\Desktop\konceptCSD_Upgrade_API\KonceptCSDAPI\bin\Debug\net5.0\runti
 C:\Users\DGR\Desktop\konceptCSD_Upgrade_API\KonceptCSDAPI\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
 C:\Users\DGR\Desktop\konceptCSD_Upgrade_API\KonceptCSDAPI\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\DGR\Desktop\konceptCSD_Upgrade_API\KonceptCSDAPI\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Users\DGR\Desktop\konceptCSD_Upgrade_API\KonceptCSDAPI\obj\Debug\net5.0\KonceptCSDAPI.csproj.AssemblyReference.cache
 C:\Users\DGR\Desktop\konceptCSD_Upgrade_API\KonceptCSDAPI\obj\Debug\net5.0\KonceptCSDAPI.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\DGR\Desktop\konceptCSD_Upgrade_API\KonceptCSDAPI\obj\Debug\net5.0\KonceptCSDAPI.AssemblyInfoInputs.cache
 C:\Users\DGR\Desktop\konceptCSD_Upgrade_API\KonceptCSDAPI\obj\Debug\net5.0\KonceptCSDAPI.AssemblyInfo.cs
