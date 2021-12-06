@@ -89,7 +89,6 @@ namespace KonceptCSDAPI.Models.User
     {
         public Int64? User_Group_ID { get; set; } = 0;
         public string? Search { get; set; } = string.Empty;
-        public string? User_Group_Name { get; set; } = string.Empty;
         public Boolean? Is_Predefined { get; set; } = true;
         public Boolean? Is_Active { get; set; } = true;
         public Int64? Logged_User_ID { get; set; } = 0;
