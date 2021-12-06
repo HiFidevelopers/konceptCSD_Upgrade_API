@@ -140,6 +140,7 @@ namespace KonceptCSDAPI.Controllers
 		#endregion
 
 
+
 		[HttpPost]
 		[Route("fetchusergroup")]
 		#region Fetch User Group
@@ -185,6 +186,7 @@ namespace KonceptCSDAPI.Controllers
 		#endregion
 
 
+
 		[HttpPost]
 		[Route("fetchusergroupmapping")]
 		#region Fetch User Group
@@ -228,6 +230,8 @@ namespace KonceptCSDAPI.Controllers
 			return _objResponse;
 		}
 		#endregion
+
+
 
 		[HttpPost]
 		[Route("insertupdateusergroup")]

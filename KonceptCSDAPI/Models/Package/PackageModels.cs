@@ -33,10 +33,22 @@ namespace KonceptCSDAPI.Models.Package
 		public string Package { get; set; }
 
 		[Required(ErrorMessage = "Package Price is required.")]
-		public string Price { get; set; }
+		public string Package_Price { get; set; }
 
-		[Required(ErrorMessage = "Package Code is required.")]
-		public string Code { get; set; }
+		public string? Code { get; set; } = string.Empty;
+
+		[Required(ErrorMessage = "Package Session Type Period is required.")]
+		public Int64 Session_Type_Period { get; set; }
+
+		[Required(ErrorMessage = "Package Session Number of visits is required.")]
+		public Int64 Session_Number_Visits { get; set; }
+
+		[Required(ErrorMessage = "Package Session Reports Period is required.")]
+		public Int64 Session_Reports_Period { get; set; }
+
+		[Required(ErrorMessage = "Package Session Hours is required.")]
+		public Int64 Session_Hours { get; set; }
+
 		public Boolean? Is_Active { get; set; } = true;
 		public Int64? Logged_User_ID { get; set; } = 0;
 	}

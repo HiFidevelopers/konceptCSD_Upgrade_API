@@ -117,7 +117,7 @@ namespace KonceptCSDAPI.Managers
             param.Add(new SqlParameter("Is_Active", model.Is_Active));
             param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
 
-            DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_FETCH_USER_GROUP_WITH_ACCESS_AREA_WITH_MAPPING", param);
+            DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_FETCH_USER_GROUP", param);
 
             return _dtResp;
         }

@@ -65,15 +65,16 @@ namespace KonceptCSDAPI.Managers
             {
                 param.Add(new SqlParameter("Mode", "INSERT"));
             }
-            param.Add(new SqlParameter("User_ID", model.Package_ID));
-            param.Add(new SqlParameter("User_ID", model.Package_ID));
-            param.Add(new SqlParameter("User_ID", model.Package_ID));
-            param.Add(new SqlParameter("User_ID", model.Package_ID));
-            param.Add(new SqlParameter("User_ID", model.Package_ID));
-            param.Add(new SqlParameter("User_ID", model.Package_ID));
-            param.Add(new SqlParameter("User_ID", model.Package_ID));
-            param.Add(new SqlParameter("User_ID", model.Package_ID));
-            
+            param.Add(new SqlParameter("Package_ID", model.Package_ID));
+            param.Add(new SqlParameter("Package", model.Package));
+            param.Add(new SqlParameter("Code", model.Code));
+            param.Add(new SqlParameter("Package_Price", model.Package_Price));
+            param.Add(new SqlParameter("Session_Type_Period", model.Session_Type_Period));
+            param.Add(new SqlParameter("Session_Number_Visits", model.Session_Number_Visits));
+            param.Add(new SqlParameter("Session_Reports_Period", model.Session_Reports_Period));
+            param.Add(new SqlParameter("Session_Hours", model.Session_Hours));
+            param.Add(new SqlParameter("Is_Active", model.Is_Active));
+
             param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
 
             DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_INSERT_UPDATE_PACKAGE", param);
