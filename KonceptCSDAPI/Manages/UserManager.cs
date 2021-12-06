@@ -54,7 +54,6 @@ namespace KonceptCSDAPI.Managers
         }
         #endregion
 
-
         #region Insert Update User
         public DataTable insertUpdateUser(UserInsertUpdateModel model)
         {
@@ -108,7 +107,6 @@ namespace KonceptCSDAPI.Managers
         }
         #endregion
 
-
         #region Fetch User Group
         public DataTable fetchUserGroup(UserGroupFilterModel model)
         {
@@ -125,6 +123,21 @@ namespace KonceptCSDAPI.Managers
         }
         #endregion
 
+        #region Fetch User Group Mapping
+        public DataTable fetchUserGroupMapping(UserGroupFilterModel model)
+        {
+            param.Add(new SqlParameter("User_Group_ID", model.User_Group_ID));
+            param.Add(new SqlParameter("Search", model.Search.Trim()));
+            param.Add(new SqlParameter("User_Group_Name", model.User_Group_Name.Trim()));
+            param.Add(new SqlParameter("Is_Predefined", model.Is_Predefined));
+            param.Add(new SqlParameter("Is_Active", model.Is_Active));
+            param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
+
+            DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_FETCH_USER_GROUP_WITH_ACCESS_AREA_WITH_MAPPING", param);
+
+            return _dtResp;
+        }
+        #endregion
 
         #region Insert Update User Group
         public DataTable insertUpdateUserGroup(UserGroupInsertUpdateModel model)

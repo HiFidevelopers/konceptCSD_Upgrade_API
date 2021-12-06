@@ -72,7 +72,7 @@ namespace KonceptCSDAPI.Controllers
 			}
 			#endregion
 
-			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "Login_ID"));
+			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"));
 
 			DataTable _dtresp = _IPackageManager.fetchPackage(model);
 			if (_objHelper.checkDBResponse(_dtresp))
@@ -117,7 +117,7 @@ namespace KonceptCSDAPI.Controllers
 			}
 			#endregion
 
-			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "Login_ID"));
+			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"));
 
 			DataTable _dtresp = _IPackageManager.insertUpdatePackage(model);
 			if (_objHelper.checkDBResponse(_dtresp))
@@ -136,7 +136,6 @@ namespace KonceptCSDAPI.Controllers
 			return _objResponse;
 		}
 		#endregion
-
 
 	}
 }
