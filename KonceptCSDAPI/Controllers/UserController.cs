@@ -74,7 +74,7 @@ namespace KonceptCSDAPI.Controllers
 			}
 			#endregion
 
-			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "Login_ID"));
+			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"));
 
 			DataTable _dtresp = _IUserManager.fetchUser(model);
 			if (_objHelper.checkDBResponse(_dtresp))
@@ -119,7 +119,7 @@ namespace KonceptCSDAPI.Controllers
 			}
 			#endregion
 
-			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "Login_ID"));
+			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"));
 
 			DataTable _dtresp = _IUserManager.insertUpdateUser(model);
 			if (_objHelper.checkDBResponse(_dtresp))
@@ -164,7 +164,7 @@ namespace KonceptCSDAPI.Controllers
 			}
 			#endregion
 
-			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "Login_ID"));
+			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"));
 
 			DataTable _dtresp = _IUserManager.fetchUserGroup(model);
 			if (_objHelper.checkDBResponse(_dtresp))
@@ -184,6 +184,50 @@ namespace KonceptCSDAPI.Controllers
 		}
 		#endregion
 
+
+		[HttpPost]
+		[Route("fetchusergroupmapping")]
+		#region Fetch User Group
+
+		public ServiceResponseModel fetchUserGroupMapping([FromBody] UserGroupFilterModel model)
+		{
+			#region DATA VALIDATION
+			if (model == null)
+			{
+				_objResponse.sys_message = _objHelper.GetModelErrorMessages(ModelState);
+				_objResponse.response = 0;
+				return _objResponse;
+			}
+			else
+			{
+				if (!ModelState.IsValid)
+				{
+					_objResponse.sys_message = "input model is not supplied.";
+					_objResponse.response = 0;
+					return _objResponse;
+				}
+			}
+			#endregion
+
+			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"));
+
+			DataTable _dtresp = _IUserManager.fetchUserGroupMapping(model);
+			if (_objHelper.checkDBResponse(_dtresp))
+			{
+				if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")
+				{
+					_objResponse.response = 0;
+					_objResponse.sys_message = Convert.ToString(_dtresp.Rows[0]["message"]);
+				}
+				else
+				{
+					_objResponse.response = 1;
+					_objResponse.data = _objHelper.ConvertTableToDictionary(_dtresp);
+				}
+			}
+			return _objResponse;
+		}
+		#endregion
 
 		[HttpPost]
 		[Route("insertupdateusergroup")]
@@ -209,7 +253,7 @@ namespace KonceptCSDAPI.Controllers
 			}
 			#endregion
 
-			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "Login_ID"));
+			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"));
 
 			DataTable _dtresp = _IUserManager.insertUpdateUserGroup(model);
 			if (_objHelper.checkDBResponse(_dtresp))

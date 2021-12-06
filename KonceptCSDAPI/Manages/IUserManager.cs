@@ -14,6 +14,8 @@ namespace KonceptCSDAPI.Managers
 
 		DataTable fetchUserGroup(UserGroupFilterModel modell);
 
+		DataTable fetchUserGroupMapping(UserGroupFilterModel modell);
+
 		DataTable insertUpdateUserGroup(UserGroupInsertUpdateModel modell);
 	}
 }
