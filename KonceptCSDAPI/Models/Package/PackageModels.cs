@@ -32,10 +32,14 @@ namespace KonceptCSDAPI.Models.Package
 		[Required(ErrorMessage = "Package Name is required.")]
 		public string Package { get; set; }
 
+		[Required(ErrorMessage = "Package Currency is required.")]
+		public Int64? Currency_ID { get; set; } = 0;
+
 		[Required(ErrorMessage = "Package Price is required.")]
 		public string Package_Price { get; set; }
 
 		public string? Code { get; set; } = string.Empty;
+		
 
 		[Required(ErrorMessage = "Package Session Type Period is required.")]
 		public Int64 Session_Type_Period { get; set; }

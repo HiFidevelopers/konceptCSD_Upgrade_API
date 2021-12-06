@@ -112,7 +112,6 @@ namespace KonceptCSDAPI.Managers
         {
             param.Add(new SqlParameter("User_Group_ID", model.User_Group_ID));
             param.Add(new SqlParameter("Search", model.Search.Trim()));
-            param.Add(new SqlParameter("User_Group_Name", model.User_Group_Name.Trim()));
             param.Add(new SqlParameter("Is_Predefined", model.Is_Predefined));
             param.Add(new SqlParameter("Is_Active", model.Is_Active));
             param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
@@ -128,7 +127,6 @@ namespace KonceptCSDAPI.Managers
         {
             param.Add(new SqlParameter("User_Group_ID", model.User_Group_ID));
             param.Add(new SqlParameter("Search", model.Search.Trim()));
-            param.Add(new SqlParameter("User_Group_Name", model.User_Group_Name.Trim()));
             param.Add(new SqlParameter("Is_Predefined", model.Is_Predefined));
             param.Add(new SqlParameter("Is_Active", model.Is_Active));
             param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));

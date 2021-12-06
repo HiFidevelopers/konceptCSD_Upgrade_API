@@ -68,6 +68,7 @@ namespace KonceptCSDAPI.Managers
             param.Add(new SqlParameter("Package_ID", model.Package_ID));
             param.Add(new SqlParameter("Package", model.Package));
             param.Add(new SqlParameter("Code", model.Code));
+            param.Add(new SqlParameter("Currency_ID", model.Currency_ID));
             param.Add(new SqlParameter("Package_Price", model.Package_Price));
             param.Add(new SqlParameter("Session_Type_Period", model.Session_Type_Period));
             param.Add(new SqlParameter("Session_Number_Visits", model.Session_Number_Visits));
