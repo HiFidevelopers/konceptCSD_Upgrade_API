@@ -81,7 +81,6 @@ namespace KonceptCSDAPI.Models.User
         public string? Facebook_Profile_URL { get; set; } = string.Empty;
         public string? LinkedIn_Profile_URL { get; set; } = string.Empty;
         public Int64? Logged_User_ID { get; set; } = 0;
-
     }
 
 
