@@ -94,6 +94,11 @@ namespace KonceptCSDAPI.Models.User
         public Int64? Logged_User_ID { get; set; } = 0;
     }
 
+    public class UserGroupMappingModel
+    {
+        public Int64? User_Group_ID { get; set; } = 0;
+        public Int64? Logged_User_ID { get; set; } = 0;
+    }
 
     public class UserGroupInsertUpdateModel
     {

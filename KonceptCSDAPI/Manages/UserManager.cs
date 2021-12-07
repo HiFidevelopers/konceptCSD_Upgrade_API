@@ -65,6 +65,10 @@ namespace KonceptCSDAPI.Managers
             else
             {
                 param.Add(new SqlParameter("Mode", "INSERT"));
+
+                //User Login
+                param.Add(new SqlParameter("Username", model.Username));
+                param.Add(new SqlParameter("Password", _CommonFunctions.ConvertToSHA512(model.Password)));
             }
             param.Add(new SqlParameter("User_ID", model.User_ID));
             param.Add(new SqlParameter("User_Type", model.User_Type));
@@ -73,20 +77,16 @@ namespace KonceptCSDAPI.Managers
             param.Add(new SqlParameter("User_Group_ID", model.User_Group_ID));
             param.Add(new SqlParameter("FullName", model.FullName));
 
-            param.Add(new SqlParameter("FirstName", model.FirstName.Trim()));
+            param.Add(new SqlParameter("FirstName", model.FirstName));
             param.Add(new SqlParameter("LastName", model.LastName));
             param.Add(new SqlParameter("Gender", model.Gender));
-            param.Add(new SqlParameter("Email", model.Email.Trim()));
+            param.Add(new SqlParameter("Email", model.Email));
             param.Add(new SqlParameter("Is_Email_Verify", model.Is_Email_Verify));
             param.Add(new SqlParameter("MobileNo", model.MobileNo));
             param.Add(new SqlParameter("Is_Mobile_Verify", model.Is_Mobile_Verify));
             param.Add(new SqlParameter("Valid_till", model.Valid_till));
             param.Add(new SqlParameter("Is_Active", model.Is_Active));
-
-
-            //User Login
-            param.Add(new SqlParameter("Username", model.Username.Trim()));
-            param.Add(new SqlParameter("Password", _CommonFunctions.ConvertToSHA512(model.Password.Trim())));
+            
 
             //User Profile
             param.Add(new SqlParameter("Profile_Pic", model.Profile_Pic));
@@ -123,12 +123,9 @@ namespace KonceptCSDAPI.Managers
         #endregion
 
         #region Fetch User Group Mapping
-        public DataTable fetchUserGroupMapping(UserGroupFilterModel model)
+        public DataTable fetchUserGroupMapping(UserGroupMappingModel model)
         {
             param.Add(new SqlParameter("User_Group_ID", model.User_Group_ID));
-            param.Add(new SqlParameter("Search", model.Search.Trim()));
-            param.Add(new SqlParameter("Is_Predefined", model.Is_Predefined));
-            param.Add(new SqlParameter("Is_Active", model.Is_Active));
             param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
 
             DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_FETCH_USER_GROUP_WITH_ACCESS_AREA_WITH_MAPPING", param);

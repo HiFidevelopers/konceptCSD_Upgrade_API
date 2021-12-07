@@ -191,7 +191,7 @@ namespace KonceptCSDAPI.Controllers
 		[Route("fetchusergroupmapping")]
 		#region Fetch User Group
 
-		public ServiceResponseModel fetchUserGroupMapping([FromBody] UserGroupFilterModel model)
+		public ServiceResponseModel fetchUserGroupMapping([FromBody] UserGroupMappingModel model)
 		{
 			#region DATA VALIDATION
 			if (model == null)
