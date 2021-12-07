@@ -64,7 +64,7 @@ namespace KonceptCSDAPI.Models.User
         public Boolean? Is_Active { get; set; } = true;
 
         //User Login Info
-        [Required(ErrorMessage = "Username is required.")]
+        [RequiredIf("User_ID", "0", ErrorMessage = "Username is required.")]
         public string Username { get; set; }
 
         [RequiredIf("User_ID", "0", ErrorMessage = "Password is required.")]
