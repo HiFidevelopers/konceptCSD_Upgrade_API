@@ -42,7 +42,7 @@ namespace KonceptCSDAPI.Managers
         public DataTable fetchPackage(PackageFilterModel model)
         {
             param.Add(new SqlParameter("Package_ID", model.Package_ID));
-            param.Add(new SqlParameter("Search", model.Search.Trim()));
+            param.Add(new SqlParameter("Search", !string.IsNullOrEmpty(model.Search) ? model.Search.Trim() : ""));
             param.Add(new SqlParameter("Is_Active", model.Is_Active));
             param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
 

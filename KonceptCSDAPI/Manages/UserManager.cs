@@ -42,7 +42,7 @@ namespace KonceptCSDAPI.Managers
         public DataTable fetchUser(UserFilterModel model)
         {
             param.Add(new SqlParameter("User_ID", model.User_ID));
-            param.Add(new SqlParameter("Search", model.Search.Trim()));
+            param.Add(new SqlParameter("Search", !string.IsNullOrEmpty(model.Search) ? model.Search.Trim() : ""));
             param.Add(new SqlParameter("User_Type", model.User_Type));
             param.Add(new SqlParameter("User_Group_ID", model.User_Group_ID));
             param.Add(new SqlParameter("Is_Active", model.Is_Active));
@@ -111,7 +111,7 @@ namespace KonceptCSDAPI.Managers
         public DataTable fetchUserGroup(UserGroupFilterModel model)
         {
             param.Add(new SqlParameter("User_Group_ID", model.User_Group_ID));
-            param.Add(new SqlParameter("Search", model.Search.Trim()));
+            param.Add(new SqlParameter("Search", !string.IsNullOrEmpty(model.Search) ? model.Search.Trim() : ""));
             param.Add(new SqlParameter("Is_Predefined", model.Is_Predefined));
             param.Add(new SqlParameter("Is_Active", model.Is_Active));
             param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));

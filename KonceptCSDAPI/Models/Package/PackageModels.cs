@@ -20,7 +20,7 @@ namespace KonceptCSDAPI.Models.Package
 	{
 		public Int64? Package_ID { get; set; } = 0;
 		public string? Search { get; set; } = string.Empty;
-		public int? Is_Active { get; set; } = null;
+		public Boolean? Is_Active { get; set; } = null;
 		public Int64? Logged_User_ID { get; set; } = 0;
 	}
 
