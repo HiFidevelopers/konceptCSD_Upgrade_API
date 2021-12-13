@@ -51,7 +51,8 @@ namespace KonceptCSDAPI.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("signin")]
-        public ServiceResponseModel Signin([FromBody] SiginModel model)
+        public ServiceResponseModel Signin([FromBody] 
+        SiginModel model)
         {
             #region DATA VALIDATION
             if (model == null)

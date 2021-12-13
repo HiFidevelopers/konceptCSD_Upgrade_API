@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KonceptCSDAPI.Middleware;
 
 namespace KonceptCSDAPI
 {
@@ -83,6 +84,7 @@ namespace KonceptCSDAPI
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseMiddleware<JWTMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
