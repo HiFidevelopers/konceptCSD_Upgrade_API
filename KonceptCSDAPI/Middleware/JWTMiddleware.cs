@@ -65,7 +65,7 @@ namespace KonceptCSDAPI.Middleware
 
                 var key = Encoding.ASCII.GetBytes(this.SecretKey);
 
-                var tokenHandler = new JwtSecurityTokenHandler();
+                tokenHandler = new JwtSecurityTokenHandler();
                 try
                 {
                     tokenHandler.ValidateToken(token, new TokenValidationParameters
