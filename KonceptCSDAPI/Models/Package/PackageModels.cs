@@ -56,4 +56,12 @@ namespace KonceptCSDAPI.Models.Package
 		public Boolean? Is_Active { get; set; } = true;
 		public Int64? Logged_User_ID { get; set; } = 0;
 	}
+
+
+	public class PackageDeleteModel
+	{
+		public Int64 Package_ID { get; set; }
+		public Boolean Is_Deleted { get; set; }
+		public Int64? Logged_User_ID { get; set; } = 0;
+	}
 }

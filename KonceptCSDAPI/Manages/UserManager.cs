@@ -107,6 +107,19 @@ namespace KonceptCSDAPI.Managers
         }
         #endregion
 
+        #region Delete User
+        public DataTable deleteUser(UserDeleteModel model)
+        {
+            param.Add(new SqlParameter("User_ID", model.User_ID)); 
+            param.Add(new SqlParameter("Is_Deleted", model.Is_Deleted));
+            param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
+
+            DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_DELETE_USER", param);
+
+            return _dtResp;
+        }
+        #endregion
+
         #region Fetch User Group
         public DataTable fetchUserGroup(UserGroupFilterModel model)
         {
@@ -160,6 +173,19 @@ namespace KonceptCSDAPI.Managers
             param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
 
             DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_INSERT_UPDATE_USER_GROUP", param);
+
+            return _dtResp;
+        }
+        #endregion
+
+        #region Delete User Group
+        public DataTable deleteUserGroup(UserGroupDeleteModel model)
+        {
+            param.Add(new SqlParameter("User_Group_ID", model.User_Group_ID));
+            param.Add(new SqlParameter("Is_Deleted", model.Is_Deleted));
+            param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
+
+            DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_DELETE_GROUP", param);
 
             return _dtResp;
         }

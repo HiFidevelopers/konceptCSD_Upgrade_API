@@ -84,5 +84,19 @@ namespace KonceptCSDAPI.Managers
         }
         #endregion
 
+
+        #region Delete Package
+        public DataTable deletePackage(PackageDeleteModel model)
+        {
+            param.Add(new SqlParameter("Package_ID", model.Package_ID));
+            param.Add(new SqlParameter("Is_Deleted", model.Is_Deleted));
+            param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
+
+            DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_DELETE_PACKAGE", param);
+
+            return _dtResp;
+        }
+        #endregion
+
     }
 }

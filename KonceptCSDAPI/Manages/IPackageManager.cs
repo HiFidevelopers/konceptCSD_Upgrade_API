@@ -12,5 +12,7 @@ namespace KonceptCSDAPI.Managers
 
 		DataTable insertUpdatePackage(PackageInsertUpdateModel modell);
 
+		DataTable deletePackage(PackageDeleteModel modell);
+
 	}
 }
