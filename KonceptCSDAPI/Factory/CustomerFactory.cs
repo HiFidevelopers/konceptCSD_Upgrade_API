@@ -6,11 +6,11 @@ namespace KonceptCSDAPI.Factory
 {
 	public class CustomerFactory
 	{
-		//public IUserManager CustomerManager(IConfiguration configuration, IHostingEnvironment HostingEnvironment)
-		//{
-		//	ICustomerManager returnvalue = new CustomerManager(configuration, HostingEnvironment);
+		public IUserManager CustomerManager(IConfiguration configuration, IHostingEnvironment HostingEnvironment)
+		{
+			ICustomerManager returnvalue = new CustomerManager(configuration, HostingEnvironment);
 
-		//	return returnvalue;
-		//}
+			return returnvalue;
+		}
 	}
 }

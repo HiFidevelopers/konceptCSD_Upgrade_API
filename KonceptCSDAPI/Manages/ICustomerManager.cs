@@ -8,9 +8,9 @@ namespace KonceptCSDAPI.Managers
 {
 	public interface ICustomerManager
 	{
-		//DataTable fetchCustomer(CustomerFilterModel modell);
+		DataTable fetchCustomer(CustomerFilterModel modell);
 
-		//DataTable insertCustomer(CustomerInsertModel modell);
+		DataTable insertCustomer(CustomerInsertModel modell);
 
 	}
 }
