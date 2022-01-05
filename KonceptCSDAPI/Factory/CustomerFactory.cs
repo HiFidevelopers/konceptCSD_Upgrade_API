@@ -6,7 +6,7 @@ namespace KonceptCSDAPI.Factory
 {
 	public class CustomerFactory
 	{
-		public IUserManager CustomerManager(IConfiguration configuration, IHostingEnvironment HostingEnvironment)
+		public ICustomerManager CustomerManager(IConfiguration configuration, IHostingEnvironment HostingEnvironment)
 		{
 			ICustomerManager returnvalue = new CustomerManager(configuration, HostingEnvironment);
 
