@@ -1,4 +1,4 @@
-﻿using KonceptCSDAPI.Models.User;
+﻿using KonceptCSDAPI.Models.Customer;
 using KonceptSupportLibrary;
 using Microsoft.AspNetCore.Http;
 using System.Data;
@@ -11,6 +11,5 @@ namespace KonceptCSDAPI.Managers
 		DataTable fetchCustomer(CustomerFilterModel modell);
 
 		DataTable insertCustomer(CustomerInsertModel modell);
-
 	}
 }

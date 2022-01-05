@@ -1,4 +1,4 @@
-﻿using KonceptCSDAPI.Models.User;
+﻿using KonceptCSDAPI.Models.Customer;
 using KonceptSupportLibrary;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;

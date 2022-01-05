@@ -7,7 +7,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using KonceptSupportLibrary;
 
-namespace KonceptCSDAPI.Models.User
+namespace KonceptCSDAPI.Models.Customer
 {
     public class CustomerModels
     {
@@ -43,10 +43,9 @@ namespace KonceptCSDAPI.Models.User
         public Int64? Logged_User_ID { get; set; } = 0;
     }
 
+    //Customer Info
     public class CustomerInfoList
     {
-
-        //Customer Info
         public Int64? Customer_ID { get; set; } = 0;
         public string? Father_FirstName { get; set; } = string.Empty;
         public string? Father_LastName { get; set; } = string.Empty;

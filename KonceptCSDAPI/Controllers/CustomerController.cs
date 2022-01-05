@@ -1,6 +1,6 @@
 ﻿using KonceptCSDAPI.Factory;
 using KonceptCSDAPI.Managers;
-using KonceptCSDAPI.Models.User;
+using KonceptCSDAPI.Models.Customer;
 using KonceptSupportLibrary;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 
 namespace KonceptCSDAPI.Controllers
 {
-	[Route("api/user")]
+	[Route("api/customer")]
 	[ApiController]
 	public class CustomerController : ControllerBase
 	{
@@ -31,8 +31,8 @@ namespace KonceptCSDAPI.Controllers
 		private CommonHelper _objHelper = new CommonHelper();
 		private MSSQLGateway _MSSQLGateway;
 		private IHostingEnvironment _env;
-		public UserFactory _UserFactory;
-		private IUserManager _IUserManager;
+		public CustomerFactory _CustomerFactory;
+		private ICustomerManager _ICustomerManager;
 		private DataTable _dt;
 		private DataRow _dr;
 		CommonFunctions _CommonFunctions;
@@ -44,8 +44,8 @@ namespace KonceptCSDAPI.Controllers
 			// Get connectin string of current solution
 			this._configuration = configuration;
 			this._env = env;
-			_UserFactory = new UserFactory();
-			_IUserManager = _UserFactory.UserManager(this._configuration, this._env);
+			_CustomerFactory = new CustomerFactory();
+			_ICustomerManager = _CustomerFactory.CustomerManager(this._configuration, this._env);
 			_CommonFunctions = new CommonFunctions(configuration, env);
 		}
 
@@ -76,7 +76,7 @@ namespace KonceptCSDAPI.Controllers
 
 			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"));
 
-			DataTable _dtresp = _IUserManager.fetchCustomer(model);
+			DataTable _dtresp = _ICustomerManager.fetchCustomer(model);
 			if (_objHelper.checkDBResponse(_dtresp))
 			{
 				if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")
@@ -121,7 +121,7 @@ namespace KonceptCSDAPI.Controllers
 
 			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"));
 
-			DataTable _dtresp = _IUserManager.insertCustomer(model);
+			DataTable _dtresp = _ICustomerManager.insertCustomer(model);
 			if (_objHelper.checkDBResponse(_dtresp))
 			{
 				if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")
@@ -138,8 +138,6 @@ namespace KonceptCSDAPI.Controllers
 			return _objResponse;
 		}
 		#endregion
-
-
 
 
 	}
