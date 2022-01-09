@@ -140,36 +140,6 @@ namespace KonceptSupportLibrary
                 return false;
             }
         }
-
-        // Send SMS
-        public string SendSMS(string mobilenumber, string msg)
-        {
-            try
-            {
-                String smsservicetype = "singlemsg";
-                String query = "username=" + HttpUtility.UrlEncode("") + "&password=" + HttpUtility.UrlEncode("") + "&smsservicetype=" + HttpUtility.UrlEncode(smsservicetype) + "&content=" + HttpUtility.UrlEncode(msg) + "&mobileno=" + HttpUtility.UrlEncode(mobilenumber) + "&senderid=" + HttpUtility.UrlEncode("");
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("");
-                byte[] byteArray = Encoding.ASCII.GetBytes(query);
-                request.ContentType = "application/x-www-form-urlencoded";
-                request.ContentLength = byteArray.Length;
-                request.KeepAlive = false;
-                request.Method = "POST";
-                request.ContentType = "application/x-www-form-urlencoded";
-                request.ContentLength = byteArray.Length;
-                using (var stream = request.GetRequestStream())
-                {
-                    stream.Write(byteArray, 0, byteArray.Length);
-                }
-                var response = (HttpWebResponse)request.GetResponse();
-                var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-                return responseString;
-            }
-            catch (Exception ex)
-            {
-                return ex.Message.ToString();
-            }
-        }
-
         // Generate OTP
         public string generateOTP(int length = 6)
         {
