@@ -65,10 +65,6 @@ namespace KonceptCSDAPI.Managers
             else
             {
                 param.Add(new SqlParameter("Mode", "INSERT"));
-
-                //User Login
-                param.Add(new SqlParameter("Username", model.Username));
-                param.Add(new SqlParameter("Password", _CommonFunctions.ConvertToSHA512(model.Password)));
             }
             param.Add(new SqlParameter("User_ID", model.User_ID));
             param.Add(new SqlParameter("User_Type", model.User_Type));
@@ -76,7 +72,6 @@ namespace KonceptCSDAPI.Managers
             param.Add(new SqlParameter("User_Description", model.User_Description));
             param.Add(new SqlParameter("User_Group_ID", model.User_Group_ID));
             param.Add(new SqlParameter("FullName", model.FullName));
-
             param.Add(new SqlParameter("FirstName", model.FirstName));
             param.Add(new SqlParameter("LastName", model.LastName));
             param.Add(new SqlParameter("Gender", model.Gender));
@@ -86,7 +81,10 @@ namespace KonceptCSDAPI.Managers
             param.Add(new SqlParameter("Is_Mobile_Verify", model.Is_Mobile_Verify));
             param.Add(new SqlParameter("Valid_till", model.Valid_till));
             param.Add(new SqlParameter("Is_Active", model.Is_Active));
-            
+
+            //User Login
+            param.Add(new SqlParameter("Username", !string.IsNullOrEmpty(model.Username) ? model.Username.Trim() : ""));
+            param.Add(new SqlParameter("Password", !string.IsNullOrEmpty(model.Password) ? _CommonFunctions.ConvertToSHA512(model.Password.Trim()) : ""));
 
             //User Profile
             param.Add(new SqlParameter("Profile_Pic", model.Profile_Pic));

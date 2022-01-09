@@ -57,14 +57,18 @@ namespace KonceptCSDAPI.Managers
 		#region Insert Customer,Subscription & Child
 		public DataTable insertCustomer(CustomerInsertModel model)
 		{
+			//Customer User Login
+			param.Add(new SqlParameter("Username", !string.IsNullOrEmpty(model.Username) ? model.Username.Trim() : ""));
+			param.Add(new SqlParameter("Password", !string.IsNullOrEmpty(model.Password) ? _CommonFunctions.ConvertToSHA512(model.Password.Trim()) : ""));
+
 			//Customer Info
-			param.Add(new SqlParameter("TBL_CUSTOMER", model.CustomerInfoList));
+			param.Add(new SqlParameter("TBL_CUSTOMER", _commonHelper.ConvertListToTable(model.CustomerInfoList)));
 
 			//Customer Subscription List
-			param.Add(new SqlParameter("TBL_CUSTOMER_SUBSCRIPTION", model.CustomerSubscriptionList));
+			param.Add(new SqlParameter("TBL_CUSTOMER_SUBSCRIPTION", _commonHelper.ConvertListToTable(model.CustomerSubscriptionList)));  
 
 			//Customer Child List
-			param.Add(new SqlParameter("TBL_CUSTOMER_CHILD", model.CustomerChildList));
+			param.Add(new SqlParameter("TBL_CUSTOMER_CHILD", _commonHelper.ConvertListToTable(model.CustomerChildList))); 
 
 			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
 

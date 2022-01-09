@@ -28,6 +28,13 @@ namespace KonceptCSDAPI.Models.Customer
 
     public class CustomerInsertModel
     {
+        //Customer (User) Login Info
+        [Required(ErrorMessage = "Customer Username is required.")]
+        public string Username { get; set; }
+
+        [Required(ErrorMessage = "Customer Password is required.")]
+        public string Password { get; set; }
+
         //Customer Info
         [Required(ErrorMessage = "Customer Info List is required.")]
         public List<CustomerInfoList> CustomerInfoList { get; set; }
@@ -66,12 +73,6 @@ namespace KonceptCSDAPI.Models.Customer
         public string? Important_Notes { get; set; } = string.Empty;
         public Boolean? Is_Active { get; set; } = true;
 
-        //Customer (User) Login Info
-        [Required(ErrorMessage = "Customer Username is required.")]
-        public string Username { get; set; }
-
-        [Required(ErrorMessage = "Customer Password is required.")]
-        public string Password { get; set; }
     }
 
     public class CustomerSubscriptionList
