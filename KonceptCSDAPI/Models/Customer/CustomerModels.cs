@@ -16,13 +16,15 @@ namespace KonceptCSDAPI.Models.Customer
         public Int64? Logged_User_ID { get; set; } = 0;
     }
 
+
     public class CustomerFilterModel
     {
-        public Int64? User_ID { get; set; } = 0;
         public Int64? Customer_ID { get; set; } = 0;
         public string? Search { get; set; } = string.Empty;
-        public Int64? State_ID { get; set; } = 0;
-        public Boolean? Is_Active { get; set; } = true;
+        public Int64? Organization_User_ID { get; set; } = 0;
+		public Int64? State_ID { get; set; } = 0;
+        public Int64? Package_ID { get; set; } = 0;        
+		public Boolean? Is_Active { get; set; } = true;
         public Int64? Logged_User_ID { get; set; } = 0;
     }
 

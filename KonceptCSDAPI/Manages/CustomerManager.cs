@@ -38,12 +38,14 @@ namespace KonceptCSDAPI.Managers
 			_CommonFunctions = new CommonFunctions(configuration, env);
 		}
 
+
 		#region Fetch Customer
 		public DataTable fetchCustomer(CustomerFilterModel model)
 		{
-			param.Add(new SqlParameter("User_ID", model.User_ID));
 			param.Add(new SqlParameter("Customer_ID", model.Customer_ID));
 			param.Add(new SqlParameter("Search", !string.IsNullOrEmpty(model.Search) ? model.Search.Trim() : ""));
+			param.Add(new SqlParameter("Organization_User_ID", model.Organization_User_ID));
+			param.Add(new SqlParameter("Package_ID", model.Package_ID));
 			param.Add(new SqlParameter("State_ID", model.State_ID));
 			param.Add(new SqlParameter("Is_Active", model.Is_Active));
 			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
