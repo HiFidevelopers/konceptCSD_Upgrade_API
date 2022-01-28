@@ -16,6 +16,7 @@ namespace KonceptCSDAPI.Models.Customer
         public Int64? Logged_User_ID { get; set; } = 0;
     }
 
+
     public class CustomerFilterModel
     {
         public Int64? Customer_ID { get; set; } = 0;

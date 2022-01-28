@@ -38,6 +38,7 @@ namespace KonceptCSDAPI.Managers
 			_CommonFunctions = new CommonFunctions(configuration, env);
 		}
 
+
 		#region Fetch Customer
 		public DataTable fetchCustomer(CustomerFilterModel model)
 		{
