@@ -56,6 +56,32 @@ namespace KonceptCSDAPI.Managers
 		}
 		#endregion
 
+		#region Fetch Customer Child
+		public DataTable fetchCustomerChild(CustomerChildFilterModel model)
+		{
+			param.Add(new SqlParameter("Customer_ID", model.Customer_ID));
+			param.Add(new SqlParameter("Search", !string.IsNullOrEmpty(model.Search) ? model.Search.Trim() : ""));
+			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
+
+			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("[APP_FETCH_CUSTOMER_CHILD]", param);
+
+			return _dtResp;
+		}
+		#endregion
+
+		#region Fetch Customer Subsciption
+		public DataTable fetchSubsciption(CustomerSubsciptionFilterModel model)
+		{
+			param.Add(new SqlParameter("Customer_ID", model.Customer_ID));
+			param.Add(new SqlParameter("Search", !string.IsNullOrEmpty(model.Search) ? model.Search.Trim() : ""));
+			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
+
+			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("[APP_FETCH_CUSTOMER_SUBSCRIPTIONS]", param);
+
+			return _dtResp;
+		}
+		#endregion
+
 		#region Insert Customer,Subscription & Child
 		public DataTable insertCustomer(CustomerInsertModel model)
 		{
