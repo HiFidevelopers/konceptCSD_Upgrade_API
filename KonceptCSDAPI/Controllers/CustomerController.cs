@@ -316,7 +316,7 @@ namespace KonceptCSDAPI.Controllers
 
 		[HttpPost]
 		[Route("updatecustomerchild")]
-		#region Update Customer
+		#region Update Customer Child
 
 		public ServiceResponseModel updateCustomerChild([FromBody] CustomerChildUpdateModel model)
 		{
