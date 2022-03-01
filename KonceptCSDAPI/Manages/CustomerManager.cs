@@ -106,5 +106,51 @@ namespace KonceptCSDAPI.Managers
 		}
 		#endregion
 
+		#region Update Customer
+		public DataTable updateCustomer(CustomerUpdateModel model)
+		{
+			//Customer User Login
+			//param.Add(new SqlParameter("Username", !string.IsNullOrEmpty(model.Username) ? model.Username.Trim() : ""));
+			//param.Add(new SqlParameter("Password", !string.IsNullOrEmpty(model.Password) ? _CommonFunctions.ConvertToSHA512(model.Password.Trim()) : ""));
+
+			//Customer Info
+			param.Add(new SqlParameter("TBL_CUSTOMER", _commonHelper.ConvertListToTable(model.CustomerInfoUpdateList)));
+
+			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
+
+			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_UPDATE_CUSTOMER", param);
+
+			return _dtResp;
+		}
+		#endregion
+
+		#region Update Customer Subscription
+		public DataTable insertCustomerSubscription(CustomerSubscriptionUpdateModel model)
+		{ 
+			//Customer Subscription List
+			param.Add(new SqlParameter("TBL_CUSTOMER_SUBSCRIPTION", _commonHelper.ConvertListToTable(model.CustomerSubscriptionUpdateList)));
+			 
+			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
+
+			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_UPDATE_CUSTOMER_SUBSCRIPTION", param);
+
+			return _dtResp;
+		}
+		#endregion
+
+		#region Update Customer Child
+		public DataTable updateCustomerChild(CustomerChildUpdatetModel model)
+		{
+			//Customer Child List
+			param.Add(new SqlParameter("TBL_CUSTOMER_CHILD", _commonHelper.ConvertListToTable(model.CustomerChildUpdateList)));
+
+			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
+
+			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_UPDATE_CUSTOMER_CHILD", param);
+
+			return _dtResp;
+		}
+		#endregion
+
 	}
 }
