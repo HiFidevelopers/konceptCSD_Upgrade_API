@@ -38,6 +38,29 @@ namespace KonceptCSDAPI.Managers
 			_CommonFunctions = new CommonFunctions(configuration, env);
 		}
 
+		#region Insert Customer,Subscription & Child
+		public DataTable insertCustomer(CustomerInsertModel model)
+		{
+			//Customer User Login
+			param.Add(new SqlParameter("Username", !string.IsNullOrEmpty(model.Username) ? model.Username.Trim() : ""));
+			param.Add(new SqlParameter("Password", !string.IsNullOrEmpty(model.Password) ? _CommonFunctions.ConvertToSHA512(model.Password.Trim()) : ""));
+
+			//Customer Info
+			param.Add(new SqlParameter("TBL_CUSTOMER", _commonHelper.ConvertListToTable(model.CustomerInfoList)));
+
+			//Customer Subscription List
+			param.Add(new SqlParameter("TBL_CUSTOMER_SUBSCRIPTION", _commonHelper.ConvertListToTable(model.CustomerSubscriptionList)));
+
+			//Customer Child List
+			param.Add(new SqlParameter("TBL_CUSTOMER_CHILD", _commonHelper.ConvertListToTable(model.CustomerChildList)));
+
+			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
+
+			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_INSERT_CUSTOMER", param);
+
+			return _dtResp;
+		}
+		#endregion
 
 		#region Fetch Customer
 		public DataTable fetchCustomer(CustomerFilterModel model)
@@ -51,56 +74,6 @@ namespace KonceptCSDAPI.Managers
 			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
 
 			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_FETCH_CUSTOMER", param);
-
-			return _dtResp;
-		}
-		#endregion
-
-		#region Fetch Customer Child
-		public DataTable fetchCustomerChild(CustomerChildFilterModel model)
-		{
-			param.Add(new SqlParameter("Customer_ID", model.Customer_ID));
-			param.Add(new SqlParameter("Search", !string.IsNullOrEmpty(model.Search) ? model.Search.Trim() : ""));
-			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
-
-			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("[APP_FETCH_CUSTOMER_CHILD]", param);
-
-			return _dtResp;
-		}
-		#endregion
-
-		#region Fetch Customer Subsciption
-		public DataTable fetchSubsciption(CustomerSubsciptionFilterModel model)
-		{
-			param.Add(new SqlParameter("Customer_ID", model.Customer_ID));
-			param.Add(new SqlParameter("Search", !string.IsNullOrEmpty(model.Search) ? model.Search.Trim() : ""));
-			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
-
-			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("[APP_FETCH_CUSTOMER_SUBSCRIPTIONS]", param);
-
-			return _dtResp;
-		}
-		#endregion
-
-		#region Insert Customer,Subscription & Child
-		public DataTable insertCustomer(CustomerInsertModel model)
-		{
-			//Customer User Login
-			param.Add(new SqlParameter("Username", !string.IsNullOrEmpty(model.Username) ? model.Username.Trim() : ""));
-			param.Add(new SqlParameter("Password", !string.IsNullOrEmpty(model.Password) ? _CommonFunctions.ConvertToSHA512(model.Password.Trim()) : ""));
-
-			//Customer Info
-			param.Add(new SqlParameter("TBL_CUSTOMER", _commonHelper.ConvertListToTable(model.CustomerInfoList)));
-
-			//Customer Subscription List
-			param.Add(new SqlParameter("TBL_CUSTOMER_SUBSCRIPTION", _commonHelper.ConvertListToTable(model.CustomerSubscriptionList)));  
-
-			//Customer Child List
-			param.Add(new SqlParameter("TBL_CUSTOMER_CHILD", _commonHelper.ConvertListToTable(model.CustomerChildList))); 
-
-			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
-
-			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_INSERT_CUSTOMER", param);
 
 			return _dtResp;
 		}
@@ -124,12 +97,25 @@ namespace KonceptCSDAPI.Managers
 		}
 		#endregion
 
+		#region Fetch Customer Subscription
+		public DataTable fetchSubscription(CustomerSubscriptionFilterModel model)
+		{
+			param.Add(new SqlParameter("Customer_ID", model.Customer_ID));
+			param.Add(new SqlParameter("Search", !string.IsNullOrEmpty(model.Search) ? model.Search.Trim() : ""));
+			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
+
+			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("[APP_FETCH_CUSTOMER_SUBSCRIPTIONS]", param);
+
+			return _dtResp;
+		}
+		#endregion
+
 		#region Update Customer Subscription
-		public DataTable insertCustomerSubscription(CustomerSubscriptionUpdateModel model)
-		{ 
+		public DataTable updateCustomerSubscription(CustomerSubscriptionUpdateModel model)
+		{
 			//Customer Subscription List
 			param.Add(new SqlParameter("TBL_CUSTOMER_SUBSCRIPTION", _commonHelper.ConvertListToTable(model.CustomerSubscriptionUpdateList)));
-			 
+
 			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
 
 			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_UPDATE_CUSTOMER_SUBSCRIPTION", param);
@@ -138,8 +124,21 @@ namespace KonceptCSDAPI.Managers
 		}
 		#endregion
 
-		#region Update Customer Child
-		public DataTable updateCustomerChild(CustomerChildUpdatetModel model)
+		#region Fetch Customer Child
+		public DataTable fetchCustomerChild(CustomerChildFilterModel model)
+		{
+			param.Add(new SqlParameter("Customer_ID", model.Customer_ID));
+			param.Add(new SqlParameter("Search", !string.IsNullOrEmpty(model.Search) ? model.Search.Trim() : ""));
+			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
+
+			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("[APP_FETCH_CUSTOMER_CHILD]", param);
+
+			return _dtResp;
+		}
+		#endregion
+
+		#region Update Customer Child        
+		public DataTable updateCustomerChild(CustomerChildUpdateModel model)
 		{
 			//Customer Child List
 			param.Add(new SqlParameter("TBL_CUSTOMER_CHILD", _commonHelper.ConvertListToTable(model.CustomerChildUpdateList)));
