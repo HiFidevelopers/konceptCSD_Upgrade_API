@@ -11,5 +11,16 @@ namespace KonceptCSDAPI.Managers
 		DataTable fetchCustomer(CustomerFilterModel modell);
 
 		DataTable insertCustomer(CustomerInsertModel modell);
+
+		DataTable updateCustomer(CustomerUpdateModel modell);
+
+		DataTable fetchSubscription(CustomerSubscriptionFilterModel modell);
+
+		DataTable updateCustomerSubscription(CustomerSubscriptionUpdateModel modell);
+
+		DataTable fetchCustomerChild(CustomerChildFilterModel modell);
+
+		DataTable updateCustomerChild(CustomerChildUpdateModel modell);
+
 	}
 }

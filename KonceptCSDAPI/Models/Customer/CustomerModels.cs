@@ -28,6 +28,13 @@ namespace KonceptCSDAPI.Models.Customer
 		public Int64? Logged_User_ID { get; set; } = 0;
 	}
 
+    public class CustomerSubscriptionFilterModel
+    {
+        public Int64? Customer_ID { get; set; } = 0;
+        public string? Search { get; set; } = string.Empty;
+        public Int64? Logged_User_ID { get; set; } = 0;
+    }
+
     public class CustomerChildFilterModel
     {
         public Int64? Customer_ID { get; set; } = 0;
@@ -35,14 +42,8 @@ namespace KonceptCSDAPI.Models.Customer
         public Int64? Logged_User_ID { get; set; } = 0;
     }
 
-    public class CustomerSubsciptionFilterModel
-    {
-        public Int64? Customer_ID { get; set; } = 0;
-        public string? Search { get; set; } = string.Empty;
-        public Int64? Logged_User_ID { get; set; } = 0;
-    }
 
-    //Customer Insert
+    //Customer Info Insert
     public class CustomerInsertModel
     {
         //Customer (User) Login Info
@@ -67,6 +68,7 @@ namespace KonceptCSDAPI.Models.Customer
         public Int64? Logged_User_ID { get; set; } = 0;
     }
 
+    //Customer Info Update
     public class CustomerUpdateModel
     {
         //Customer (User) Login Info
@@ -82,6 +84,8 @@ namespace KonceptCSDAPI.Models.Customer
 
         public Int64? Logged_User_ID { get; set; } = 0;
     }
+
+    //Customer Subscription Update
     public class CustomerSubscriptionUpdateModel
     {
 
@@ -91,7 +95,9 @@ namespace KonceptCSDAPI.Models.Customer
 
         public Int64? Logged_User_ID { get; set; } = 0;
     }
-    public class CustomerChildUpdatetModel
+
+    //Customer Child Update
+    public class CustomerChildUpdateModel
     {
         //Customer Child List
         [Required(ErrorMessage = "Customer Child(Student) List is required.")]

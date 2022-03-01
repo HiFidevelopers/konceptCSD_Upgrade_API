@@ -38,7 +38,6 @@ namespace KonceptCSDAPI.Controllers
 		CommonFunctions _CommonFunctions;
 		#endregion Controller Properties
 
-
 		public CustomerController(IConfiguration configuration, IHostingEnvironment env)
 		{
 			// Get connectin string of current solution
@@ -48,7 +47,6 @@ namespace KonceptCSDAPI.Controllers
 			_ICustomerManager = _CustomerFactory.CustomerManager(this._configuration, this._env);
 			_CommonFunctions = new CommonFunctions(configuration, env);
 		}
-
 
 		[HttpPost]
 		[Route("fetchcustomer")]
@@ -94,7 +92,7 @@ namespace KonceptCSDAPI.Controllers
 		}
 		#endregion
 
-
+		
 		[HttpPost]
 		[Route("insertcustomer")]
 		#region Insert Customer
@@ -139,6 +137,226 @@ namespace KonceptCSDAPI.Controllers
 		}
 		#endregion
 
+		[HttpPost]
+		[Route("updatecustomer")]
+		#region Update Customer
+
+		public ServiceResponseModel updateCustomer([FromBody] CustomerUpdateModel model)
+		{
+			#region DATA VALIDATION
+			if (model == null)
+			{
+				_objResponse.sys_message = _objHelper.GetModelErrorMessages(ModelState);
+				_objResponse.response = 0;
+				return _objResponse;
+			}
+			else
+			{
+				if (!ModelState.IsValid)
+				{
+					_objResponse.sys_message = "input model is not supplied.";
+					_objResponse.response = 0;
+					return _objResponse;
+				}
+			}
+			#endregion
+
+			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"));
+
+			DataTable _dtresp = _ICustomerManager.updateCustomer(model);
+			if (_objHelper.checkDBResponse(_dtresp))
+			{
+				if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")
+				{
+					_objResponse.response = 0;
+					_objResponse.sys_message = Convert.ToString(_dtresp.Rows[0]["message"]);
+				}
+				else
+				{
+					_objResponse.response = 1;
+					_objResponse.data = _objHelper.ConvertTableToDictionary(_dtresp);
+				}
+			}
+			return _objResponse;
+		}
+		#endregion
+
+		[HttpPost]
+		[Route("fetchsubscription")]
+		#region Fetch Customer Subscription
+
+		public ServiceResponseModel fetchSubscription([FromBody] CustomerSubscriptionFilterModel model)
+		{
+			#region DATA VALIDATION
+			if (model == null)
+			{
+				_objResponse.sys_message = _objHelper.GetModelErrorMessages(ModelState);
+				_objResponse.response = 0;
+				return _objResponse;
+			}
+			else
+			{
+				if (!ModelState.IsValid)
+				{
+					_objResponse.sys_message = "input model is not supplied.";
+					_objResponse.response = 0;
+					return _objResponse;
+				}
+			}
+			#endregion
+
+			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"));
+
+			DataTable _dtresp = _ICustomerManager.fetchSubscription(model);
+			if (_objHelper.checkDBResponse(_dtresp))
+			{
+				if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")
+				{
+					_objResponse.response = 0;
+					_objResponse.sys_message = Convert.ToString(_dtresp.Rows[0]["message"]);
+				}
+				else
+				{
+					_objResponse.response = 1;
+					_objResponse.data = _objHelper.ConvertTableToDictionary(_dtresp);
+				}
+			}
+			return _objResponse;
+		}
+		#endregion
+
+		[HttpPost]
+		[Route("updatecustomersubscription")]
+		#region Update Customer Subscription
+
+		public ServiceResponseModel updateCustomerSubscription([FromBody] CustomerSubscriptionUpdateModel model)
+		{
+			#region DATA VALIDATION
+			if (model == null)
+			{
+				_objResponse.sys_message = _objHelper.GetModelErrorMessages(ModelState);
+				_objResponse.response = 0;
+				return _objResponse;
+			}
+			else
+			{
+				if (!ModelState.IsValid)
+				{
+					_objResponse.sys_message = "input model is not supplied.";
+					_objResponse.response = 0;
+					return _objResponse;
+				}
+			}
+			#endregion
+
+			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"));
+
+			DataTable _dtresp = _ICustomerManager.updateCustomerSubscription(model);
+			if (_objHelper.checkDBResponse(_dtresp))
+			{
+				if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")
+				{
+					_objResponse.response = 0;
+					_objResponse.sys_message = Convert.ToString(_dtresp.Rows[0]["message"]);
+				}
+				else
+				{
+					_objResponse.response = 1;
+					_objResponse.data = _objHelper.ConvertTableToDictionary(_dtresp);
+				}
+			}
+			return _objResponse;
+		}
+		#endregion
+
+		[HttpPost]
+		[Route("fetchcustomerchild")]
+		#region Fetch Customer Child
+
+		public ServiceResponseModel fetchCustomerChild([FromBody] CustomerChildFilterModel model)
+		{
+			#region DATA VALIDATION
+			if (model == null)
+			{
+				_objResponse.sys_message = _objHelper.GetModelErrorMessages(ModelState);
+				_objResponse.response = 0;
+				return _objResponse;
+			}
+			else
+			{
+				if (!ModelState.IsValid)
+				{
+					_objResponse.sys_message = "input model is not supplied.";
+					_objResponse.response = 0;
+					return _objResponse;
+				}
+			}
+			#endregion
+
+			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"));
+
+			DataTable _dtresp = _ICustomerManager.fetchCustomerChild(model);
+			if (_objHelper.checkDBResponse(_dtresp))
+			{
+				if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")
+				{
+					_objResponse.response = 0;
+					_objResponse.sys_message = Convert.ToString(_dtresp.Rows[0]["message"]);
+				}
+				else
+				{
+					_objResponse.response = 1;
+					_objResponse.data = _objHelper.ConvertTableToDictionary(_dtresp);
+				}
+			}
+			return _objResponse;
+		}
+		#endregion
+
+
+		[HttpPost]
+		[Route("updatecustomerchild")]
+		#region Update Customer
+
+		public ServiceResponseModel updateCustomerChild([FromBody] CustomerChildUpdateModel model)
+		{
+			#region DATA VALIDATION
+			if (model == null)
+			{
+				_objResponse.sys_message = _objHelper.GetModelErrorMessages(ModelState);
+				_objResponse.response = 0;
+				return _objResponse;
+			}
+			else
+			{
+				if (!ModelState.IsValid)
+				{
+					_objResponse.sys_message = "input model is not supplied.";
+					_objResponse.response = 0;
+					return _objResponse;
+				}
+			}
+			#endregion
+
+			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"));
+
+			DataTable _dtresp = _ICustomerManager.updateCustomerChild(model);
+			if (_objHelper.checkDBResponse(_dtresp))
+			{
+				if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")
+				{
+					_objResponse.response = 0;
+					_objResponse.sys_message = Convert.ToString(_dtresp.Rows[0]["message"]);
+				}
+				else
+				{
+					_objResponse.response = 1;
+					_objResponse.data = _objHelper.ConvertTableToDictionary(_dtresp);
+				}
+			}
+			return _objResponse;
+		}
+		#endregion
 
 	}
 }
