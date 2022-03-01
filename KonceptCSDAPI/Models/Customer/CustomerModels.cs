@@ -162,6 +162,8 @@ namespace KonceptCSDAPI.Models.Customer
     {
         public Int64? Subscription_ID { get; set; } = 0;
 
+        public Int64? Customer_ID { get; set; } = 0;
+
         [Required(ErrorMessage = "Package ID is required.")]
         public Int64 Package_ID { get; set; }
 
@@ -200,6 +202,8 @@ namespace KonceptCSDAPI.Models.Customer
     public class CustomerChildList
     {
         public Int64? Customer_Child_ID { get; set; } = 0;
+
+        public Int64? Customer_ID { get; set; } = 0;
 
         [Required(ErrorMessage = "Customer Child Level (Grade) ID is required.")]
         public Int64 Level_ID { get; set; }
