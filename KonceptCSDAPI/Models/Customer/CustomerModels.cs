@@ -162,14 +162,20 @@ namespace KonceptCSDAPI.Models.Customer
     {
         public Int64? Subscription_ID { get; set; } = 0;
 
-        [Required(ErrorMessage = "Package ID is required for mapping.")]
+        public Int64? Customer_ID { get; set; } = 0;
+
+        [Required(ErrorMessage = "Package ID is required.")]
         public Int64 Package_ID { get; set; }
 
-        [Required(ErrorMessage = "Start_Date is required for mapping.")]
+        [Required(ErrorMessage = "Start_Date is required.")]
         public string Start_Date { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Cancellation(End) Date is required for mapping.")]
+        [Required(ErrorMessage = "Cancellation(End) Date is required.")]
         public string Cancellation_Date { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Payment Type ID (Mode Of Payment) is required.")]
+        public Int64 Payment_Type_ID { get; set; }
+        
         public Boolean? Is_Active { get; set; } = true;
     }
 
@@ -181,10 +187,10 @@ namespace KonceptCSDAPI.Models.Customer
         [Required(ErrorMessage = "Subscription ID is required.")]
         public Int64 Subscription_ID { get; set; }
 
-        [Required(ErrorMessage = "Package ID is required for mapping.")]
+        [Required(ErrorMessage = "Package ID is required.")]
         public Int64 Package_ID { get; set; }
 
-        [Required(ErrorMessage = "Start_Date is required for mapping.")]
+        [Required(ErrorMessage = "Start_Date is required.")]
         public string Start_Date { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Cancellation(End) Date is required for mapping.")]
@@ -196,6 +202,8 @@ namespace KonceptCSDAPI.Models.Customer
     public class CustomerChildList
     {
         public Int64? Customer_Child_ID { get; set; } = 0;
+
+        public Int64? Customer_ID { get; set; } = 0;
 
         [Required(ErrorMessage = "Customer Child Level (Grade) ID is required.")]
         public Int64 Level_ID { get; set; }
