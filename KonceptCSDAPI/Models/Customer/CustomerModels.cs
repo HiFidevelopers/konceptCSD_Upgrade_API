@@ -193,8 +193,12 @@ namespace KonceptCSDAPI.Models.Customer
         [Required(ErrorMessage = "Start_Date is required.")]
         public string Start_Date { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Cancellation(End) Date is required for mapping.")]
-        public string Cancellation_Date { get; set; } = string.Empty;
+		[Required(ErrorMessage = "Cancellation(End) Date is required.")]
+		public string Cancellation_Date { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Mode Of Payment (Payment_Type_ID) is required.")]
+        public Int64 Payment_Type_ID { get; set; } 
+
         public Boolean? Is_Active { get; set; } = true;
     }
 
