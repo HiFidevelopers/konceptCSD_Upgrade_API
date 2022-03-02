@@ -1,21 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "D:\\wamp64\\www\\KeyKoncept\\konceptCSD_Upgrade\\konceptCSD_Upgrade_API\\KonceptCSDAPI\\KonceptCSDAPI.csproj": {}
+    "C:\\Users\\DGR\\Desktop\\konceptCSD_Upgrade_API\\KonceptCSDAPI\\KonceptCSDAPI.csproj": {}
   },
   "projects": {
-    "D:\\wamp64\\www\\KeyKoncept\\konceptCSD_Upgrade\\konceptCSD_Upgrade_API\\KonceptCSDAPI\\KonceptCSDAPI.csproj": {
+    "C:\\Users\\DGR\\Desktop\\konceptCSD_Upgrade_API\\KonceptCSDAPI\\KonceptCSDAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\wamp64\\www\\KeyKoncept\\konceptCSD_Upgrade\\konceptCSD_Upgrade_API\\KonceptCSDAPI\\KonceptCSDAPI.csproj",
+        "projectUniqueName": "C:\\Users\\DGR\\Desktop\\konceptCSD_Upgrade_API\\KonceptCSDAPI\\KonceptCSDAPI.csproj",
         "projectName": "KonceptCSDAPI",
-        "projectPath": "D:\\wamp64\\www\\KeyKoncept\\konceptCSD_Upgrade\\konceptCSD_Upgrade_API\\KonceptCSDAPI\\KonceptCSDAPI.csproj",
-        "packagesPath": "C:\\Users\\irdha\\.nuget\\packages\\",
-        "outputPath": "D:\\wamp64\\www\\KeyKoncept\\konceptCSD_Upgrade\\konceptCSD_Upgrade_API\\KonceptCSDAPI\\obj\\",
+        "projectPath": "C:\\Users\\DGR\\Desktop\\konceptCSD_Upgrade_API\\KonceptCSDAPI\\KonceptCSDAPI.csproj",
+        "packagesPath": "C:\\Users\\DGR\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DGR\\Desktop\\konceptCSD_Upgrade_API\\KonceptCSDAPI\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\irdha\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\DGR\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -99,24 +104,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.13, 5.0.13]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -125,7 +112,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
