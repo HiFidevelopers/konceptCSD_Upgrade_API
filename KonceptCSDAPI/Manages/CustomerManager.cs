@@ -151,5 +151,18 @@ namespace KonceptCSDAPI.Managers
 		}
 		#endregion
 
+		#region Delete Customer Child        
+		public DataTable DeleteCustomerChild(CustomerChildDeleteModel model)
+		{
+			//Customer Child Delete
+			param.Add(new SqlParameter("Customer_Child_ID", model.Customer_Child_ID));
+			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
+
+			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_DELETE_CUSTOMER_CHILD", param);
+
+			return _dtResp;
+		}
+		#endregion
+
 	}
 }

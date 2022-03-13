@@ -22,5 +22,7 @@ namespace KonceptCSDAPI.Managers
 
 		DataTable updateCustomerChild(CustomerChildUpdateModel modell);
 
+		DataTable DeleteCustomerChild(CustomerChildDeleteModel modell);
+
 	}
 }
