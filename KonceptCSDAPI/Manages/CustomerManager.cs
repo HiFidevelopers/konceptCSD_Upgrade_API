@@ -155,6 +155,7 @@ namespace KonceptCSDAPI.Managers
 		public DataTable DeleteCustomerChild(CustomerChildDeleteModel model)
 		{
 			//Customer Child Delete
+			param.Add(new SqlParameter("Customer_ID", model.Customer_ID));
 			param.Add(new SqlParameter("Customer_Child_ID", model.Customer_Child_ID));
 			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
 

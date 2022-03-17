@@ -109,9 +109,14 @@ namespace KonceptCSDAPI.Models.Customer
     //Customer Child Delete
     public class CustomerChildDeleteModel
     {
+        //Customer ID
+        [Required(ErrorMessage = "Customer ID is required.")]
+        public Int64 Customer_ID { get; set; }
+
+
         //Customer Child ID
         [Required(ErrorMessage = "Customer Child ID is required.")]
-        public Int64? Customer_Child_ID { get; set; }
+        public Int64 Customer_Child_ID { get; set; }
 
         public Int64? Logged_User_ID { get; set; } = 0;
     }
