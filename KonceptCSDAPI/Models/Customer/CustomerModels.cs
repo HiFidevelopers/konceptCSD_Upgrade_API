@@ -30,14 +30,15 @@ namespace KonceptCSDAPI.Models.Customer
 
     public class CustomerSubscriptionFilterModel
     {
-        public Int64? Customer_ID { get; set; } = 0;
+        public Int64 Customer_ID { get; set; }
         public string? Search { get; set; } = string.Empty;
+        public Boolean? Is_Active { get; set; } = true;
         public Int64? Logged_User_ID { get; set; } = 0;
     }
 
     public class CustomerChildFilterModel
     {
-        public Int64? Customer_ID { get; set; } = 0;
+        public Int64 Customer_ID { get; set; }
         public string? Search { get; set; } = string.Empty;
         public Int64? Logged_User_ID { get; set; } = 0;
     }

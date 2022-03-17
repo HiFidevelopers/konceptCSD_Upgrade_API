@@ -102,6 +102,7 @@ namespace KonceptCSDAPI.Managers
 		{
 			param.Add(new SqlParameter("Customer_ID", model.Customer_ID));
 			param.Add(new SqlParameter("Search", !string.IsNullOrEmpty(model.Search) ? model.Search.Trim() : ""));
+			param.Add(new SqlParameter("Is_Active", model.Is_Active));
 			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
 
 			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("[APP_FETCH_CUSTOMER_SUBSCRIPTIONS]", param);
