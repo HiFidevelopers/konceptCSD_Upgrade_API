@@ -44,13 +44,37 @@ namespace KonceptCSDAPI.Managers
 			param.Add(new SqlParameter("Package_ID", model.Package_ID));
 			param.Add(new SqlParameter("Search", !string.IsNullOrEmpty(model.Search) ? model.Search.Trim() : ""));
 			param.Add(new SqlParameter("Is_Show_Cancel_Request", model.Is_Show_Cancel_Request));			
-			param.Add(new SqlParameter("Next_TV", model.Next_TV)); 
+			param.Add(new SqlParameter("Next_TV", model.Next_TV_Date)); 
 			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
 			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_FETCH_DUE_SESSIONS", param);
 
 			return _dtResp;
 		}
 		#endregion
-		 
+
+
+		#region Insert Update Customer Remarks
+		public DataTable insertUpdateCustomerRemarks(CustomerRemarksInsertUpdateModel model)
+		{
+			if (model.Remarks_ID > 0)
+			{
+				param.Add(new SqlParameter("Mode", "UPDATE"));
+			}
+			else
+			{
+				param.Add(new SqlParameter("Mode", "INSERT"));
+			}
+			param.Add(new SqlParameter("Remarks_ID", model.Remarks_ID));
+			param.Add(new SqlParameter("Customer_ID", model.Customer_ID));
+			param.Add(new SqlParameter("Next_Call_Date", model.Next_Call_Date));
+			param.Add(new SqlParameter("Next_TV_Date", model.Next_TV_Date));
+			param.Add(new SqlParameter("Remarks", model.Remarks));
+			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
+
+			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("[APP_INSERT_UPDATE_CUSTOMER_REMARKS]", param);
+
+			return _dtResp;
+		}
+		#endregion
 	}
 }

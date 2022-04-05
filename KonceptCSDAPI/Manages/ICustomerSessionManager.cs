@@ -10,5 +10,7 @@ namespace KonceptCSDAPI.Managers
 	{
 		DataTable fetchCustomerDueSession(CustomerDueSessionFilterModel modell);
 
+		DataTable insertUpdateCustomerRemarks(CustomerRemarksInsertUpdateModel modell);
+
 	}
 }
