@@ -2,20 +2,13 @@
 using KonceptCSDAPI.Managers;
 using KonceptCSDAPI.Models.CustomerSession;
 using KonceptSupportLibrary;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 
 
@@ -119,6 +112,50 @@ namespace KonceptCSDAPI.Controllers
 			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"));
 
 			DataTable _dtresp = _ICustomerSessionManager.insertUpdateCustomerRemarks(model);
+			if (_objHelper.checkDBResponse(_dtresp))
+			{
+				if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")
+				{
+					_objResponse.response = 0;
+					_objResponse.sys_message = Convert.ToString(_dtresp.Rows[0]["message"]);
+				}
+				else
+				{
+					_objResponse.response = 1;
+					_objResponse.data = _objHelper.ConvertTableToDictionary(_dtresp);
+				}
+			}
+			return _objResponse;
+		}
+		#endregion
+
+		[HttpPost]
+		[Route("fetchcustomerremarks")]
+		#region Fetch Customer Remarks
+
+		public ServiceResponseModel fetchCustomerRemarks([FromBody] CustomerRemarksFilterModel model)
+		{
+			#region DATA VALIDATION
+			if (model == null)
+			{
+				_objResponse.sys_message = _objHelper.GetModelErrorMessages(ModelState);
+				_objResponse.response = 0;
+				return _objResponse;
+			}
+			else
+			{
+				if (!ModelState.IsValid)
+				{
+					_objResponse.sys_message = "input model is not supplied.";
+					_objResponse.response = 0;
+					return _objResponse;
+				}
+			}
+			#endregion
+
+			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"));
+
+			DataTable _dtresp = _ICustomerSessionManager.fetchCustomerRemarks(model);
 			if (_objHelper.checkDBResponse(_dtresp))
 			{
 				if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")

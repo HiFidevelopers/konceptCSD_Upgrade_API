@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Threading.Tasks;
 
 namespace KonceptCSDAPI.Managers
 {
@@ -72,6 +71,20 @@ namespace KonceptCSDAPI.Managers
 			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
 
 			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("[APP_INSERT_UPDATE_CUSTOMER_REMARKS]", param);
+
+			return _dtResp;
+		}
+		#endregion
+
+
+		#region Fetch Customer Remarks
+		public DataTable fetchCustomerRemarks(CustomerRemarksFilterModel model)
+		{
+			param.Add(new SqlParameter("Remarks_ID", model.Remarks_ID));
+			param.Add(new SqlParameter("Customer_ID", model.Customer_ID));
+			param.Add(new SqlParameter("Search", !string.IsNullOrEmpty(model.Search) ? model.Search.Trim() : ""));
+			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
+			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("[APP_FETCH_CUSTOMER_REMARKS]", param);
 
 			return _dtResp;
 		}
