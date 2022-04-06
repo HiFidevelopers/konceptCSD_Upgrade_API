@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using KonceptSupportLibrary;
 
 namespace KonceptCSDAPI.Models.User
@@ -121,7 +117,6 @@ namespace KonceptCSDAPI.Models.User
 
 	public class AccessAreaList
 	{
-
 		public Int64? User_Group_Access_Area_Mapping_ID { get; set; } = 0;
 		public Int64? User_Group_ID { get; set; } = 0;
 

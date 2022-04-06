@@ -1,8 +1,6 @@
 ﻿using KonceptCSDAPI.Models.CustomerSession;
 using KonceptSupportLibrary;
-using Microsoft.AspNetCore.Http;
 using System.Data;
-using System.Threading.Tasks;
 
 namespace KonceptCSDAPI.Managers
 {
@@ -11,6 +9,8 @@ namespace KonceptCSDAPI.Managers
 		DataTable fetchCustomerDueSession(CustomerDueSessionFilterModel modell);
 
 		DataTable insertUpdateCustomerRemarks(CustomerRemarksInsertUpdateModel modell);
+
+		DataTable fetchCustomerRemarks(CustomerRemarksFilterModel modell);
 
 	}
 }
