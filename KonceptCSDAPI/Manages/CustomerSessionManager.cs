@@ -65,6 +65,7 @@ namespace KonceptCSDAPI.Managers
 			}
 			param.Add(new SqlParameter("Remarks_ID", model.Remarks_ID));
 			param.Add(new SqlParameter("Customer_ID", model.Customer_ID));
+			param.Add(new SqlParameter("Priority_Type", model.Priority_Type));
 			param.Add(new SqlParameter("Next_Call_Date", model.Next_Call_Date));
 			param.Add(new SqlParameter("Next_TV_Date", model.Next_TV_Date));
 			param.Add(new SqlParameter("Remarks", model.Remarks));
