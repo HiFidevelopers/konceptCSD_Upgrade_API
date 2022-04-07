@@ -29,10 +29,15 @@ namespace KonceptCSDAPI.Models.CustomerSession
 
 		[Required(ErrorMessage = "Customer ID is required.")]
 		public Int64 Customer_ID { get; set; }
+		public string Priority_Type { get; set; } = string.Empty; 
 		public string Next_Call_Date { get; set; } = string.Empty;
+		public string Next_Call_Time { get; set; } = string.Empty;
 
-		[Required(ErrorMessage = "Next TV Date Remarks is required.")]
+		[Required(ErrorMessage = "Next TV Date is required.")]
 		public string Next_TV_Date { get; set; }
+
+		[Required(ErrorMessage = "Next TV Time is required.")]
+		public string Next_TV_Time { get; set; }
 
 		[Required(ErrorMessage = "Customer Remarks is required.")]
 		public string Remarks { get; set; }
