@@ -42,15 +42,14 @@ namespace KonceptCSDAPI.Managers
 		{
 			param.Add(new SqlParameter("Package_ID", model.Package_ID));
 			param.Add(new SqlParameter("Search", !string.IsNullOrEmpty(model.Search) ? model.Search.Trim() : ""));
-			param.Add(new SqlParameter("Is_Show_Cancel_Request", model.Is_Show_Cancel_Request));			
-			param.Add(new SqlParameter("Next_TV", model.Next_TV_Date)); 
+			param.Add(new SqlParameter("Is_Show_Cancel_Request", model.Is_Show_Cancel_Request));
+			param.Add(new SqlParameter("Next_TV", model.Next_TV_Date));
 			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
 			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_FETCH_DUE_SESSIONS", param);
 
 			return _dtResp;
 		}
 		#endregion
-
 
 		#region Insert Update Customer Remarks
 		public DataTable insertUpdateCustomerRemarks(CustomerRemarksInsertUpdateModel model)
@@ -79,7 +78,6 @@ namespace KonceptCSDAPI.Managers
 		}
 		#endregion
 
-
 		#region Fetch Customer Remarks
 		public DataTable fetchCustomerRemarks(CustomerRemarksFilterModel model)
 		{
@@ -92,5 +90,80 @@ namespace KonceptCSDAPI.Managers
 			return _dtResp;
 		}
 		#endregion
+
+		#region Fetch Customer Description History
+		public DataTable fetchCustomerDescriptionHistory(CustomerDescriptionHistoryFilterModel model)
+		{
+			param.Add(new SqlParameter("Description_History_ID", model.Description_History_ID));
+			param.Add(new SqlParameter("Customer_ID", model.Customer_ID));
+			param.Add(new SqlParameter("Search", !string.IsNullOrEmpty(model.Search) ? model.Search.Trim() : ""));
+			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
+			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("[APP_FETCH_CUSTOMER_DESCRIPTION_HISTORY]", param);
+
+			return _dtResp;
+		}
+		#endregion
+
+		#region Insert Update Customer Description History
+		public DataTable insertUpdateCustomerDescriptionHistory(CustomerDescriptionHistoryInsertUpdateModel model)
+		{
+			if (model.Description_History_ID > 0)
+			{
+				param.Add(new SqlParameter("Mode", "UPDATE"));
+			}
+			else
+			{
+				param.Add(new SqlParameter("Mode", "INSERT"));
+			}
+			param.Add(new SqlParameter("Description_History_ID", model.Description_History_ID));
+			param.Add(new SqlParameter("Customer_ID", model.Customer_ID));
+			param.Add(new SqlParameter("Subject", model.Subject));
+			param.Add(new SqlParameter("Description", model.Description));
+			param.Add(new SqlParameter("Attachment", model.Attachment));
+			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
+
+			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("[APP_INSERT_UPDATE_CUSTOMER_DESCRIPTION_HISTORY]", param);
+
+			return _dtResp;
+		}
+		#endregion
+
+		#region Fetch Customer Request
+		public DataTable fetchCustomerRequest(CustomerRequestFilterModel model)
+		{
+			param.Add(new SqlParameter("Description_History_ID", model.Request_ID));
+			param.Add(new SqlParameter("Customer_ID", model.Customer_ID));
+			param.Add(new SqlParameter("Search", !string.IsNullOrEmpty(model.Search) ? model.Search.Trim() : ""));
+			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
+			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("[APP_FETCH_CUSTOMER_REQUEST]", param);
+
+			return _dtResp;
+		}
+		#endregion
+
+		#region Insert Update Customer Request
+		public DataTable insertUpdateCustomerRequest(CustomerRequestInsertUpdateModel model)
+		{
+			if (model.Request_ID > 0)
+			{
+				param.Add(new SqlParameter("Mode", "UPDATE"));
+			}
+			else
+			{
+				param.Add(new SqlParameter("Mode", "INSERT"));
+			}
+			param.Add(new SqlParameter("Request_ID", model.Request_ID));
+			param.Add(new SqlParameter("Customer_ID", model.Customer_ID));
+			param.Add(new SqlParameter("Subject", model.Subject));
+			param.Add(new SqlParameter("Description", model.Description));
+			param.Add(new SqlParameter("Attachment", model.Attachment));
+			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
+
+			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("[APP_INSERT_UPDATE_CUSTOMER_DESCRIPTION_HISTORY]", param);
+
+			return _dtResp;
+		}
+		#endregion
+
 	}
 }
