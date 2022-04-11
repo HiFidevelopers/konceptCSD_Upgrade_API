@@ -86,6 +86,50 @@ namespace KonceptCSDAPI.Controllers
 		#endregion
 
 		[HttpPost]
+		[Route("fetchcustomerremarks")]
+		#region Fetch Customer Remarks
+
+		public ServiceResponseModel fetchCustomerRemarks([FromBody] CustomerRemarksFilterModel model)
+		{
+			#region DATA VALIDATION
+			if (model == null)
+			{
+				_objResponse.sys_message = _objHelper.GetModelErrorMessages(ModelState);
+				_objResponse.response = 0;
+				return _objResponse;
+			}
+			else
+			{
+				if (!ModelState.IsValid)
+				{
+					_objResponse.sys_message = "input model is not supplied.";
+					_objResponse.response = 0;
+					return _objResponse;
+				}
+			}
+			#endregion
+
+			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"));
+
+			DataTable _dtresp = _ICustomerSessionManager.fetchCustomerRemarks(model);
+			if (_objHelper.checkDBResponse(_dtresp))
+			{
+				if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")
+				{
+					_objResponse.response = 0;
+					_objResponse.sys_message = Convert.ToString(_dtresp.Rows[0]["message"]);
+				}
+				else
+				{
+					_objResponse.response = 1;
+					_objResponse.data = _objHelper.ConvertTableToDictionary(_dtresp);
+				}
+			}
+			return _objResponse;
+		}
+		#endregion
+
+		[HttpPost]
 		[Route("insertUpdateCustomerRemarks")]
 		#region Insert Update Customer Remarks
 
@@ -130,10 +174,10 @@ namespace KonceptCSDAPI.Controllers
 		#endregion
 
 		[HttpPost]
-		[Route("fetchcustomerremarks")]
-		#region Fetch Customer Remarks
+		[Route("fetchcustomerdescriptionhistory")]
+		#region Fetch Customer Description History
 
-		public ServiceResponseModel fetchCustomerRemarks([FromBody] CustomerRemarksFilterModel model)
+		public ServiceResponseModel fetchCustomerDescriptionHistory([FromBody] CustomerDescriptionHistoryFilterModel model)
 		{
 			#region DATA VALIDATION
 			if (model == null)
@@ -155,7 +199,7 @@ namespace KonceptCSDAPI.Controllers
 
 			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"));
 
-			DataTable _dtresp = _ICustomerSessionManager.fetchCustomerRemarks(model);
+			DataTable _dtresp = _ICustomerSessionManager.fetchCustomerDescriptionHistory(model);
 			if (_objHelper.checkDBResponse(_dtresp))
 			{
 				if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")
@@ -172,5 +216,139 @@ namespace KonceptCSDAPI.Controllers
 			return _objResponse;
 		}
 		#endregion
+
+		[HttpPost]
+		[Route("insertupdatecustomerdescriptionhistory")]
+		#region Insert Update Customer Description History
+
+		public ServiceResponseModel insertUpdateCustomerDescriptionHistory([FromBody] CustomerDescriptionHistoryInsertUpdateModel model)
+		{
+			#region DATA VALIDATION
+			if (model == null)
+			{
+				_objResponse.sys_message = _objHelper.GetModelErrorMessages(ModelState);
+				_objResponse.response = 0;
+				return _objResponse;
+			}
+			else
+			{
+				if (!ModelState.IsValid)
+				{
+					_objResponse.sys_message = "input model is not supplied.";
+					_objResponse.response = 0;
+					return _objResponse;
+				}
+			}
+			#endregion
+
+			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"));
+
+			DataTable _dtresp = _ICustomerSessionManager.insertUpdateCustomerDescriptionHistory(model);
+			if (_objHelper.checkDBResponse(_dtresp))
+			{
+				if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")
+				{
+					_objResponse.response = 0;
+					_objResponse.sys_message = Convert.ToString(_dtresp.Rows[0]["message"]);
+				}
+				else
+				{
+					_objResponse.response = 1;
+					_objResponse.data = _objHelper.ConvertTableToDictionary(_dtresp);
+				}
+			}
+			return _objResponse;
+		}
+		#endregion
+
+		[HttpPost]
+		[Route("fetchcustomerrequest")]
+		#region Fetch Customer Request
+
+		public ServiceResponseModel fetchCustomerRequest([FromBody] CustomerRequestFilterModel model)
+		{
+			#region DATA VALIDATION
+			if (model == null)
+			{
+				_objResponse.sys_message = _objHelper.GetModelErrorMessages(ModelState);
+				_objResponse.response = 0;
+				return _objResponse;
+			}
+			else
+			{
+				if (!ModelState.IsValid)
+				{
+					_objResponse.sys_message = "input model is not supplied.";
+					_objResponse.response = 0;
+					return _objResponse;
+				}
+			}
+			#endregion
+
+			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"));
+
+			DataTable _dtresp = _ICustomerSessionManager.fetchCustomerRequest(model);
+			if (_objHelper.checkDBResponse(_dtresp))
+			{
+				if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")
+				{
+					_objResponse.response = 0;
+					_objResponse.sys_message = Convert.ToString(_dtresp.Rows[0]["message"]);
+				}
+				else
+				{
+					_objResponse.response = 1;
+					_objResponse.data = _objHelper.ConvertTableToDictionary(_dtresp);
+				}
+			}
+			return _objResponse;
+		}
+		#endregion
+
+		[HttpPost]
+		[Route("insertupdatecustomerrequest")]
+		#region Insert Update Customer Request
+
+		public ServiceResponseModel insertUpdateCustomerRequest([FromBody] CustomerRequestInsertUpdateModel model)
+		{
+			#region DATA VALIDATION
+			if (model == null)
+			{
+				_objResponse.sys_message = _objHelper.GetModelErrorMessages(ModelState);
+				_objResponse.response = 0;
+				return _objResponse;
+			}
+			else
+			{
+				if (!ModelState.IsValid)
+				{
+					_objResponse.sys_message = "input model is not supplied.";
+					_objResponse.response = 0;
+					return _objResponse;
+				}
+			}
+			#endregion
+
+			model.Logged_User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"));
+
+			DataTable _dtresp = _ICustomerSessionManager.insertUpdateCustomerRequest(model);
+			if (_objHelper.checkDBResponse(_dtresp))
+			{
+				if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")
+				{
+					_objResponse.response = 0;
+					_objResponse.sys_message = Convert.ToString(_dtresp.Rows[0]["message"]);
+				}
+				else
+				{
+					_objResponse.response = 1;
+					_objResponse.data = _objHelper.ConvertTableToDictionary(_dtresp);
+				}
+			}
+			return _objResponse;
+		}
+		#endregion
+
+
 	}
 }
