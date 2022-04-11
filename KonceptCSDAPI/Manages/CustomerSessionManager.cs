@@ -157,9 +157,13 @@ namespace KonceptCSDAPI.Managers
 			param.Add(new SqlParameter("Subject", model.Subject));
 			param.Add(new SqlParameter("Description", model.Description));
 			param.Add(new SqlParameter("Attachment", model.Attachment));
+			param.Add(new SqlParameter("Request_Type_ID", model.Request_Type_ID));
+			param.Add(new SqlParameter("Request_Status_ID", model.Request_Status_ID));
+			param.Add(new SqlParameter("Assigned_By_User_ID", model.Assigned_By_User_ID));
+			param.Add(new SqlParameter("Assigned_To_User_ID", model.Assigned_To_User_ID));
 			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
 
-			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("[APP_INSERT_UPDATE_CUSTOMER_DESCRIPTION_HISTORY]", param);
+			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("[APP_INSERT_UPDATE_CUSTOMER_REQUEST]", param);
 
 			return _dtResp;
 		}
