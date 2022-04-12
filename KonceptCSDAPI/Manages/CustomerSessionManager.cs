@@ -131,7 +131,7 @@ namespace KonceptCSDAPI.Managers
 		#region Fetch Customer Request
 		public DataTable fetchCustomerRequest(CustomerRequestFilterModel model)
 		{
-			param.Add(new SqlParameter("Description_History_ID", model.Request_ID));
+			param.Add(new SqlParameter("Request_ID", model.Request_ID));
 			param.Add(new SqlParameter("Customer_ID", model.Customer_ID));
 			param.Add(new SqlParameter("Search", !string.IsNullOrEmpty(model.Search) ? model.Search.Trim() : ""));
 			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
