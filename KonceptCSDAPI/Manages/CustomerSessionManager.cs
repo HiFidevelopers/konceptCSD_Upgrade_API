@@ -152,7 +152,7 @@ namespace KonceptCSDAPI.Managers
 			{
 				param.Add(new SqlParameter("Mode", "INSERT"));
 			}
-			//param.Add(new SqlParameter("Request_ID", model.Request_ID));
+			param.Add(new SqlParameter("Request_ID", model.Request_ID));
 			param.Add(new SqlParameter("Customer_ID", model.Customer_ID));
 			param.Add(new SqlParameter("Subject", model.Subject));
 			param.Add(new SqlParameter("Description", model.Description));
