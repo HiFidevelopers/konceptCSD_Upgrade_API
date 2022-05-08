@@ -112,4 +112,13 @@ namespace KonceptCSDAPI.Models.CustomerSession
 		public Int64? Assigned_To_User_ID { get; set; } = 0;
 		public Int64 Logged_User_ID { get; set; }
 	}
+
+	public class TutorSlotsAvailabilityFilterModel
+	{
+		public Int64? User_ID { get; set; } = 0;
+
+		[Required(ErrorMessage = "Logged User ID is required.")]
+		public Int64 Logged_User_ID { get; set; }
+	}
+	
 }

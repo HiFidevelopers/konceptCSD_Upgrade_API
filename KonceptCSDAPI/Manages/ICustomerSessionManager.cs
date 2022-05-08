@@ -20,7 +20,7 @@ namespace KonceptCSDAPI.Managers
 
 		DataTable insertUpdateCustomerRequest(CustomerRequestInsertUpdateModel modell);
 
-
+		DataTable fetchTutorSlotsAvailability(TutorSlotsAvailabilityFilterModel modell);
 
 	}
 }
