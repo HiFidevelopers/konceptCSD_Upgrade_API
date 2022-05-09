@@ -21,5 +21,7 @@ namespace KonceptCSDAPI.Managers
 		DataTable insertUpdateUserGroup(UserGroupInsertUpdateModel modell);
 
 		DataTable deleteUserGroup(UserGroupDeleteModel modell);
+
+		DataTable fetchUserSlotsAvailability(UserSlotsAvailabilityFilterModel modell);
 	}
 }

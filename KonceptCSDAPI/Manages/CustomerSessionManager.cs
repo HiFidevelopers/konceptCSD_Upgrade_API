@@ -169,5 +169,16 @@ namespace KonceptCSDAPI.Managers
 		}
 		#endregion
 
+		#region Fetch Tutor Slots Availability
+		public DataTable fetchTutorSlotsAvailability(TutorSlotsAvailabilityFilterModel model)
+		{
+			param.Add(new SqlParameter("User_ID", model.User_ID));
+			param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
+			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("[APP_FETCH_TUTOR_SLOTS_AVAILABILITY]", param);
+
+			return _dtResp;
+		}
+		#endregion		
+
 	}
 }
