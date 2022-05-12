@@ -117,6 +117,12 @@ namespace KonceptCSDAPI.Models.CustomerSession
 	{
 		public Int64? User_ID { get; set; } = 0;
 
+		[Required(ErrorMessage = "Today_Date is required.")]
+		public string Today_Date { get; set; }
+
+		[Required(ErrorMessage = "DatesFor is required.")]
+		public string DatesFor { get; set; } 
+
 		[Required(ErrorMessage = "Logged User ID is required.")]
 		public Int64 Logged_User_ID { get; set; }
 	}
