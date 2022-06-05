@@ -20,6 +20,7 @@ namespace KonceptCSDAPI.Models.Package
 	{
 		public Int64? Package_ID { get; set; } = 0;
 		public string? Search { get; set; } = string.Empty;
+		public Boolean? Is_Public { get; set; } = null;
 		public Boolean? Is_Active { get; set; } = null;
 		public Int64? Logged_User_ID { get; set; } = 0;
 	}
@@ -53,7 +54,10 @@ namespace KonceptCSDAPI.Models.Package
 		[Required(ErrorMessage = "Package Session Hours is required.")]
 		public Int64 Session_Hours { get; set; }
 
+		public Boolean? Is_Public { get; set; } = false;
+
 		public Boolean? Is_Active { get; set; } = true;
+
 		public Int64? Logged_User_ID { get; set; } = 0;
 	}
 
