@@ -6025,24 +6025,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dell\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\irdha\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Koncept\\konceptCSD_Upgrade_API\\KonceptCSDAPI\\KonceptCSDAPI.csproj",
+      "projectUniqueName": "D:\\wamp64\\www\\KeyKoncept\\konceptCSD_Upgrade\\konceptCSD_Upgrade_API\\KonceptCSDAPI\\KonceptCSDAPI.csproj",
       "projectName": "KonceptCSDAPI",
-      "projectPath": "D:\\Koncept\\konceptCSD_Upgrade_API\\KonceptCSDAPI\\KonceptCSDAPI.csproj",
-      "packagesPath": "C:\\Users\\dell\\.nuget\\packages\\",
-      "outputPath": "D:\\Koncept\\konceptCSD_Upgrade_API\\KonceptCSDAPI\\obj\\",
+      "projectPath": "D:\\wamp64\\www\\KeyKoncept\\konceptCSD_Upgrade\\konceptCSD_Upgrade_API\\KonceptCSDAPI\\KonceptCSDAPI.csproj",
+      "packagesPath": "C:\\Users\\irdha\\.nuget\\packages\\",
+      "outputPath": "D:\\wamp64\\www\\KeyKoncept\\konceptCSD_Upgrade\\konceptCSD_Upgrade_API\\KonceptCSDAPI\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\irdha\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6127,6 +6122,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[5.0.17, 5.0.17]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -6135,7 +6136,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

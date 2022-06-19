@@ -43,6 +43,7 @@ namespace KonceptCSDAPI.Managers
         {
             param.Add(new SqlParameter("Package_ID", model.Package_ID));
             param.Add(new SqlParameter("Search", !string.IsNullOrEmpty(model.Search) ? model.Search.Trim() : ""));
+			param.Add(new SqlParameter("Is_Public", model.Is_Public));
             param.Add(new SqlParameter("Is_Active", model.Is_Active));
             param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
 
@@ -74,8 +75,8 @@ namespace KonceptCSDAPI.Managers
             param.Add(new SqlParameter("Session_Number_Visits", model.Session_Number_Visits));
             param.Add(new SqlParameter("Session_Reports_Period", model.Session_Reports_Period));
             param.Add(new SqlParameter("Session_Hours", model.Session_Hours));
+            param.Add(new SqlParameter("Is_Public", model.Is_Public));
             param.Add(new SqlParameter("Is_Active", model.Is_Active));
-
             param.Add(new SqlParameter("Logged_User_ID", model.Logged_User_ID));
 
             DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("APP_INSERT_UPDATE_PACKAGE", param);
