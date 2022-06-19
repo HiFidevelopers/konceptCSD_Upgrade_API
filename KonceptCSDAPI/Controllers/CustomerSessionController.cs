@@ -394,5 +394,57 @@ namespace KonceptCSDAPI.Controllers
 		}
 		#endregion
 
+		[HttpPost]
+		[Route("insertWeeklySlotAvailibility")]
+		#region Fetch Tutor Slots Availability
+
+		public ServiceResponseModel insertWeeklySlotAvailibility([FromBody] WeeklySlotAvailabilityDataModel model)
+		{
+			#region DATA VALIDATION
+			if (model == null)
+			{
+				_objResponse.sys_message = _objHelper.GetModelErrorMessages(ModelState);
+				_objResponse.response = 0;
+				return _objResponse;
+			}
+			else
+			{
+				if (!ModelState.IsValid)
+				{
+					_objResponse.sys_message = "input model is not supplied.";
+					_objResponse.response = 0;
+					return _objResponse;
+				}
+			}
+			#endregion
+
+			for (int i = 0; i < model.phaseExecutions.PRE.Count; i++)
+			{
+				WeeklySlotAvailabilityModel _model = new WeeklySlotAvailabilityModel();
+				_model.User_ID = Convert.ToInt64(_objHelper.GetTokenData(HttpContext.User.Identity as ClaimsIdentity, "User_ID"));
+				_model.Start_Time = Convert.ToString(model.phaseExecutions.PRE[i].StartTime);
+				_model.End_Time = Convert.ToString(model.phaseExecutions.PRE[i].EndTime);
+				_model.WeekDay_ID = Convert.ToInt64(model.weekday);
+				_model.Work_Type = "Work_Hours";
+
+				DataTable _dtresp = _ICustomerSessionManager.insertWeeklySlotAvailibility(_model);
+				if (_objHelper.checkDBResponse(_dtresp))
+				{
+					if (Convert.ToString(_dtresp.Rows[0]["response"]) == "0")
+					{
+						_objResponse.response = 0;
+						_objResponse.sys_message = Convert.ToString(_dtresp.Rows[0]["message"]);
+					}
+					else
+					{
+						_objResponse.response = 1;
+						_objResponse.data = _objHelper.ConvertTableToDictionary(_dtresp);
+					}
+				}
+			}
+			return _objResponse;
+		}
+		#endregion
+
 	}
 }

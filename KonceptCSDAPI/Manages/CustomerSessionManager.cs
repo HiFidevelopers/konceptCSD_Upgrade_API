@@ -180,7 +180,22 @@ namespace KonceptCSDAPI.Managers
 
 			return _dtResp;
 		}
-		#endregion		
+		#endregion
+
+		#region Insert Weekly Slot Availibility
+		public DataTable insertWeeklySlotAvailibility(WeeklySlotAvailabilityModel model)
+		{
+			List<SqlParameter> _param = new List<SqlParameter>();
+			_param.Add(new SqlParameter("User_ID", model.User_ID));
+			_param.Add(new SqlParameter("WeekDay_ID", model.WeekDay_ID));
+			_param.Add(new SqlParameter("Work_Type", model.Work_Type));
+			_param.Add(new SqlParameter("Start_Time", model.Start_Time));
+			_param.Add(new SqlParameter("End_Time", model.End_Time));
+			DataTable _dtResp = _MSSQLGateway.ExecuteProcedure("[APP_INSERT_USER_WEEKLY_SLOTS_AVAILABILITY]", _param);
+
+			return _dtResp;
+		}
+		#endregion
 
 	}
 }

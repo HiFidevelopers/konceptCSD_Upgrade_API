@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using KonceptSupportLibrary;
 
@@ -126,5 +127,40 @@ namespace KonceptCSDAPI.Models.CustomerSession
 		[Required(ErrorMessage = "Logged User ID is required.")]
 		public Int64 Logged_User_ID { get; set; }
 	}
-	
+
+	public class WeeklySlotAvailabilityModel
+	{
+		public Int64? Slots_Availability_ID { get; set; } = 0;
+		public Int64? User_ID { get; set; }
+		public Int64? WeekDay_ID { get; set; }
+		public string Work_Type { get; set; }
+		public string Start_Time { get; set; }
+		public string End_Time { get; set; }
+	}
+
+	public class WeeklySlotAvailabilityDataModel
+	{
+		[Required(ErrorMessage = "weekday is required.")]
+		public string weekday { get; set; }
+
+		[Required(ErrorMessage = "phaseExecutions is required.")]
+		public PhaseExecutions phaseExecutions { get; set; }
+		public string End_Time { get; set; }
+	}
+
+    public class PhaseExecutions
+	{
+		[Required(ErrorMessage = "PRE is required.")]
+		public List<Prehase> PRE { get; set; }
+	}
+
+	public class Prehase
+	{
+
+		[Required(ErrorMessage = "StartTime is required.")]
+		public string StartTime { get; set; }
+
+		[Required(ErrorMessage = "EndTime is required.")]
+		public string EndTime { get; set; }
+	}
 }

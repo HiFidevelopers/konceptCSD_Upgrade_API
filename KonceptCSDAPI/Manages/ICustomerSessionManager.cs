@@ -22,5 +22,7 @@ namespace KonceptCSDAPI.Managers
 
 		DataTable fetchTutorSlotsAvailability(TutorSlotsAvailabilityFilterModel modell);
 
+		DataTable insertWeeklySlotAvailibility(WeeklySlotAvailabilityModel model);
+
 	}
 }
